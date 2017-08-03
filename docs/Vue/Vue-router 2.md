@@ -94,3 +94,60 @@ eg：<router-link to='/home'>Home</router-link>  // 跳转到/home页面
 
 > 这里this为vue实例，如果你需要在闭包中使用this，请在外部将this赋值给其他参数： `const _this = this` 
 
+
+
+
+
+### 附：SPA标题修改
+
+我们经常会使用vue做spa，虽然spa的用户体验较好，但是毕竟自是一个单页面，页面的标题是不会变的。浏览器还好，如果在微信中访问，上方大大的标题一直不变让人看起来很不舒服。
+
+当然解决办法也是有的，引用deboy大神的一篇blog：[教你在微信中给Vue单页应用设置标题](http://www.deboy.cn/set-wechat-title-in-vuejs-spa.html) 。而且为了方便，deboy发布了一个npm包：[vue-wechat-title](https://www.npmjs.com/package/vue-wechat-title)
+
+原理的话，blog里面已经说得很清楚，我这里就简单说下怎么用吧。
+
+首先肯定是安装：
+
+```
+npm install vue-wechat-title --save
+```
+
+然后在main.js中引入：
+
+```
+Vue.use(require('vue-wechat-title'))
+```
+
+在App.vue的 `<router-view>` 标签中加入指令：
+
+```
+<router-view v-wechat-title="$route.meta.title"></router-view>
+```
+
+最后，在路由配置中加入 `meta: { title = '***' }`:
+
+```
+export default new Router({
+  // mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      meta: {
+        title: '主页'
+      },
+      component: Home
+    },
+    {
+      path: '/advice_detail/:id',
+      name: '问题详情',
+      meta: {
+        title: '咨询进度'
+      },
+      component: adviceDetail
+    },
+```
+
+到这里就可以在浏览器中查看效果啦！
+
+> Tip：微信web开发者工具中调试无效果，请在手机微信中查看！
