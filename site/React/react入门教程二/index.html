@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>React入门教程二 - Chen's Blog</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+    	
+    	<div class="huiji animate"></div>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Chen's Blog</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML+CSS <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../HTML%2BCSS/CSS%E6%80%BB%E7%BB%93/">CSS总结</a>
+</li>
+                            
+<li >
+    <a href="../../HTML%2BCSS/%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%2Bcanvas%E6%B6%82%E9%B8%A6/">图片放大缩小+canvas涂鸦</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">JavaScript <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../JavaScript/canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
+</li>
+                            
+<li >
+    <a href="../../JavaScript/jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">jQuery一些好用插件汇总（持续更新）</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">React <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../react%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80/">React入门教程一</a>
+</li>
+                            
+<li class="active">
+    <a href="./">React入门教程二</a>
+</li>
+                            
+<li >
+    <a href="../react%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%B8%80/">React项目实战一</a>
+</li>
+                            
+<li >
+    <a href="../%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BAreact%E9%A1%B9%E7%9B%AE/">脚手架快速构建react项目</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vue <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Vue/%E4%BD%BF%E7%94%A8vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6/">使用vue cli脚手架搭建项目框架</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">建站相关 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/MD%E6%96%87%E6%A1%A3%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/">MD文档快速构建私人博客</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/Nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">Nginx安装与配置</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/Node.JS%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">Node.JS安装配置</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">微信小程序 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AA%E4%BA%BA%E8%B4%A6%E5%8F%B7%E7%94%B3%E8%AF%B7/">微信小程序个人账号申请</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">微信小程序入门</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E6%8C%87%E5%8D%97%E9%92%88/">指南针</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%AE%80%E5%8E%86%E5%88%86%E4%BA%ABdemo/">简历分享demo</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li >
+                        <a rel="next" href="../react%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../react%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%B8%80/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Anthony0416">
+                                <i class="fa fa-github"></i>GitHub
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#react">react入门教程二</a></li>
+            <li><a href="#react_1">react事件</a></li>
+            <li><a href="#refs-dom">Refs  &amp;  真实DOM</a></li>
+            <li><a href="#react_2">react表单</a></li>
+            <li><a href="#_1">生命周期</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="react">react入门教程二</h2>
+<h3 id="react_1">react事件</h3>
+<p>由于react的虚拟DOM模式，react对所有的事件也都做了专门的处理和优化，官方的说法是引入了虚拟事件对象，将浏览器的事件进行了封装，有着浏览器本地事件西安通的属性和方法，但是没有兼容问题。听起来不错，回到我们之前state的demo，<code>handleClick(e){}</code>加一个<code>console.log(e)</code>来打印一下这个点击事件：</p>
+<p><img alt="5" src="../baseImg/5.jpg" /></p>
+<p>这里可以看到我们打印出来的全部是空，这是因为react给我们做了处理，把不需要的值全部隐藏了。现在我们来改一下<code>console.log(e.target)</code> :</p>
+<p><img alt="6" src="../baseImg/6.jpg" /></p>
+<p>可以看到target已经被打印出来了。如果你有时候需要的是本地的event的话可以使用e.nativeEvent来调用：</p>
+<p><img alt="7" src="../baseImg/7.jpg" /></p>
+<p>这里就是浏览器原生的event事件，但是需要注重浏览器兼容性。所以一般情况下最好使用react封装好的event事件，react支持的完整事件列表可以在<a href="http://www.css88.com/react/docs/events.html">官方文档</a>查看，这里不再一一列举。</p>
+<p>tip：如果需要阻止默认的事件，比如form表单的默认提交，a标签的href... 必须使用e.preventDefault() 。而需要阻止事件冒泡则需使用e.stopPropagation()。</p>
+<blockquote>
+<p>React事件机制不同于我们以往的js事件，为提高效率，它对事件做了二次处理，将所有项目中注册的事件全部代理（delegate）到顶层的document上，当你点击某个DOM的时候，它会找到这个DOM和其Component，并冒泡到找到对应的事件并触发。</p>
+<p>比如我们经典的 ul li 结构，传统js使用事件委托将事件绑定在ul上，而现在使用react只需要在ul上绑一个click事件，每次点击ul里面的元素都会冒泡并触发到ul的事件上去。但是要注意如果你在ul里面再绑定一个事件，同时不使用stopPropagation去阻止这个冒泡事件，那他会一直执行到最顶层的事件上去。</p>
+<p>想要深入了解React事件机制？相信这篇博客会对你有所帮助——<a href="http://www.open-open.com/lib/view/open1488868982317.html">React源码解读系列 -- 事件机制</a></p>
+</blockquote>
+<h3 id="refs-dom">Refs  &amp;  真实DOM</h3>
+<p>由于react使用虚拟DOM的结构，所有的页面变动都先在虚拟DOM上处理，只有当他们真正插入到文档中才会转化成真实DOM，react正是通过这样的机制来减少DOM操作从而提高页面的性能。</p>
+<p>但是有时候我们确实有获取DOM的需求，前面在学习事件的时候我们使用e.target可以获取到真实的DOM。</p>
+<p>而同时react也给我们提供了refs 来处理类似的情况。ref在react中是一个特殊的属性，它可以是一个回调函数也可以是一个字符串。如果你查找国内的资料你会发现几乎所有人用的都是ref的字符串属性，但是在最新版（V15.4.2）的react文档中，ref的字符串属性被称为’Legacy API‘ ，官方强调字符串的ref存在一些问题，并且很可能在未来的版本中将其移除。 </p>
+<p>我们先来看一下官方的demo：</p>
+<pre><code>var MyComponent = React.createClass({
+  handleClick: function() {
+    this.textInput.focus();
+    console.log(this);
+    console.log(this.textInput)
+  },
+  render: function() {
+    return (
+      &lt;div&gt;
+        &lt;input type=&quot;text&quot; ref={(input) =&gt; { this.textInput = input; }} /&gt;
+        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick={this.handleClick} /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;MyComponent /&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+
+<p>ref的回调函数会在组件创建或者重新渲染时立即执行，回调函数的参数即为当前组件的真实DOM，我们可以立即使用这个DOM或者将其保存以备后用。</p>
+<p>上面代码中输入框的ref使用es6语法直接在组件中创建了一个回调函数，这个函数将参数input保存到this.textInput中，我这里把  this  和  this.textInput  打印出来来帮助大家更好去理解：</p>
+<p><img alt="9" src="../baseImg/9.jpg" /></p>
+<p>这里this指向ReactElement，即当前的的react组件，通过回调函数往this里添加了textInput对象。通过下面的this.textInput就可以看到textInput为该组件的原生DOM，我们通过ref的回调函数将该DOM存在this中，方便后面随时调用。</p>
+<p>简单的ref回调我们可以直接写在标签中，如果复杂的话我们可以将其抽出为一个函数，在标签中通过 <code>ref={this.funtionName}</code> 的形式调用。</p>
+<p>同时我这里也有一个string refs的demo，虽然现在有很多人这样用，但是我们要尽量避免这样的写法：</p>
+<pre><code>var MyComponent = React.createClass({
+  handleClick: function() {
+    this.refs.myTextInput.focus();
+  },
+  render: function() {
+    return (
+      &lt;div&gt;
+        &lt;input type=&quot;text&quot; ref=&quot;myTextInput&quot; /&gt;
+        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick={this.handleClick} /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;MyComponent /&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+
+<p>这里给ref定义一个字符串，通过refs获取到页面所有的ref，再通过ref的字符串定位到该DOM，这样操作确实方便很多，所以这个方法被广为流传，但是建议有使用这样方法的童鞋最好慢慢抛弃这种写法。</p>
+<p>tips：有些童鞋可能网上查找资料会看到getDOMNode()  or  findDOMNode() 方法，在早期react中确实存在这些方法结合ref来获取DOM，但是后来React拆分出ReactDOM后这些方法被归到ReactDOM 的方法中，直接在react中是不能使用的。</p>
+<h3 id="react_2">react表单</h3>
+<p>在开始之前我们先看一个例子：</p>
+<pre><code>var Form = React.createClass({
+  render: function() {
+    return (
+      &lt;input type='text' value='这是一个输入框'/&gt;
+    )
+  }
+})
+ReactDOM.render(
+  &lt;Form/&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+
+<p>乍一看是不是和我们平时HTML的写法基本一样，但是一运行你就会发现无论如何你改变不了input中的值，键盘的输入对它没有任何影响！</p>
+<p>react官方将带有value的表单定义为<strong><a href="http://www.css88.com/react/docs/forms.html#">受限组件</a></strong> ，即该组件受限制于value值，他将永远等于value的值。当然，不代表我们就不能定义表单的默认值了，官方给出了两种解决办法：</p>
+<p>1，使用defaultValue。既然有受限组件，那就存在不受限组件。官方定义为不设置value的组件就是一个不受限组件，而不受限组件可以实时响应用户的输入将其反映到元素上。所以react就给组件定义了defaultValue来给组件设置一个非空的初始值，而对于radio，checkbox则有对应的defaultCheckd属性来代替checkd：</p>
+<pre><code> &lt;input type='text' defaultValue='这里是默认值，也可以使用state'/&gt;
+</code></pre>
+
+<p>我们可以给input定义ref的回调来获取输入的值：</p>
+<pre><code> &lt;input type='text' ref={(input) =&gt; { this.textInput = input; }} defaultValue='这里是默认值，也可以使用state'/&gt;
+</code></pre>
+
+<p>然后通过事件获取this.textInput.value。</p>
+<p>比如我们一个页面有很多输入框，可以给他们分别定义ref，然后通过submit按钮的提交事件来一次性全部获取所有的输入值。</p>
+<p>tip：如果我们需要阻止默认的表单提交事件，需要使用e.preventDefault()，这一点我们在之前的事件里提到过。 <code>( ) =&gt; { }</code> 为ES6语法，它表示为 <code>function( ) { }</code> 。</p>
+<p>2，对于使用state来给组件设置初始值的，可以给组件绑定onChange事件，通过onChange来实时获取用户输入，动态的改变state的值。这样虽然组件受限于value，但是value的值发生了变化，那么组件的值也就跟着变化：</p>
+<pre><code>var Form = React.createClass({
+  getInitialState:function(){
+    return {
+        inputValue: 'input',
+    }
+  },
+  handleInput:function(e) {
+    this.setState({inputValue: e.target.value});
+  },
+  render: function() {
+    return (
+      &lt;input type='text' value={this.state.inputValue} onChange={this.handleInput}/&gt;
+    )
+  }
+})
+ReactDOM.render(
+  &lt;Form/&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+
+<p>以上是使用e.target.value来获取输入值来刷新state，当然你也可以使用ref来获取。</p>
+<p>如果页面中有很多表单，但是我们又不想使用上面的defaultValue+ref，或者我们需要在用户输入的时候就获取输入值来检查。岂不是每一个表单组件都要定义一个onChange事件？</p>
+<p>官方也考虑到这种问题，所以给我们提供了一个更好的解决方案：</p>
+<pre><code>var MyComponent = React.createClass({
+  getInitialState: function() {
+    return {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  },
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  },
+
+  render: function() {
+    return (
+      &lt;form&gt;
+        &lt;label&gt;
+          Is going:
+          &lt;input
+            name=&quot;isGoing&quot;
+            type=&quot;checkbox&quot;
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} /&gt;
+        &lt;/label&gt;
+        &lt;br /&gt;
+        &lt;label&gt;
+          Number of guests:
+          &lt;input
+            name=&quot;numberOfGuests&quot;
+            type=&quot;number&quot;
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} /&gt;
+        &lt;/label&gt;
+      &lt;/form&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;MyComponent /&gt;,
+  document.getElementById('example')
+);
+</code></pre>
+
+<p>通过一个onChange事件来解决所有的表单，是不是很酷！</p>
+<p>tip: <code>[name]</code> 为ES6语法，它表示在对象中，name为一个变量。</p>
+<p>tip：<code>&lt;textarea&gt;</code> 常规设置默认值采用 <code>&lt;textarea&gt;这里是默认值&lt;/textarea&gt;</code> ，<code>&lt;select&gt;</code> 常规设置默认值是在 <code>&lt;option&gt;</code> 中添加selected，而这对于React来说会显得很奇怪，且不方便在后续的使用中来更新默认值。所以React中所有表单的默认值设置全部使用value（defaultValue）来定义，详细说明参见<a href="https://facebook.github.io/react/docs/forms.html#the-textarea-tag">官方文档</a>。</p>
+<h3 id="_1">生命周期</h3>
+<p>组件的生命周期分为三种：</p>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<p>react为每个状态提供两种处理函数，will在函数状态之前调用，did则在函数状态之后调用：</p>
+<ul>
+<li>componentWillMount()</li>
+<li>componentDidMount()</li>
+<li>componentWillUpdate(object nextProps, object nextState)</li>
+<li>componentDidUpdate(object prevProps, object prevState)</li>
+<li>componentWillUnmount()</li>
+</ul>
+<p>此外还有三种特殊状态的处理函数：</p>
+<ul>
+<li>constructor()：组件调用之前的构造函数，早于componentWillMount()，常用于声明props和state</li>
+<li>componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用</li>
+<li>shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用</li>
+</ul>
+<p>目前为止，我们所有的demo都是在单个页面通过外链react和babel的方式来演示。但是实际的开发过程中基本不会使用这种方式，接下来我们通过一个简单的练习学习在实际的开发环境中使用react，同时也对上面的内容做一个巩固。</p>
+<p>—— 2017年3月22日</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2017 | Powered By Chen Shiwen | <a href="www.miitbeian.gov.cn">粤ICP备</a>17030492号-1</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

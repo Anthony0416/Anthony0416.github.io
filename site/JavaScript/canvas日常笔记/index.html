@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Canvas日常笔记 - Chen's Blog</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+    	
+    	<div class="huiji animate"></div>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Chen's Blog</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML+CSS <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../HTML%2BCSS/CSS%E6%80%BB%E7%BB%93/">CSS总结</a>
+</li>
+                            
+<li >
+    <a href="../../HTML%2BCSS/%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%2Bcanvas%E6%B6%82%E9%B8%A6/">图片放大缩小+canvas涂鸦</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">JavaScript <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li class="active">
+    <a href="./">Canvas日常笔记</a>
+</li>
+                            
+<li >
+    <a href="../jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">jQuery一些好用插件汇总（持续更新）</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">React <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../React/react%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%B8%80/">React入门教程一</a>
+</li>
+                            
+<li >
+    <a href="../../React/react%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E4%BA%8C/">React入门教程二</a>
+</li>
+                            
+<li >
+    <a href="../../React/react%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%B8%80/">React项目实战一</a>
+</li>
+                            
+<li >
+    <a href="../../React/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BAreact%E9%A1%B9%E7%9B%AE/">脚手架快速构建react项目</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vue <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Vue/%E4%BD%BF%E7%94%A8vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6/">使用vue cli脚手架搭建项目框架</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">建站相关 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/MD%E6%96%87%E6%A1%A3%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/">MD文档快速构建私人博客</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/Nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">Nginx安装与配置</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/Node.JS%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">Node.JS安装配置</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">微信小程序 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AA%E4%BA%BA%E8%B4%A6%E5%8F%B7%E7%94%B3%E8%AF%B7/">微信小程序个人账号申请</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">微信小程序入门</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E6%8C%87%E5%8D%97%E9%92%88/">指南针</a>
+</li>
+                            
+<li >
+    <a href="../../%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%AE%80%E5%8E%86%E5%88%86%E4%BA%ABdemo/">简历分享demo</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li >
+                        <a rel="next" href="../../HTML%2BCSS/%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%2Bcanvas%E6%B6%82%E9%B8%A6/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Anthony0416">
+                                <i class="fa fa-github"></i>GitHub
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#canvas">canvas技巧小结</a></li>
+            <li><a href="#canvas_1">canvas图片问题</a></li>
+            <li><a href="#canvas_2">canvas大小问题</a></li>
+            <li><a href="#canvas_3">canvas绘制虚线框</a></li>
+            <li><a href="#canvas_4">canvas之半透明</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="canvas">canvas技巧小结</h2>
+<h3 id="canvas_1">canvas图片问题</h3>
+<p>最近一个项目需要对图片进行涂鸦，于是采用了canvas来解决。最开始天真的以为把图片设为canvas背景即可，但是后来发现设为background的图片在导出canvas绘图的时候没有一并导出。然后使用了drawImage把图片放到画布上，却发现出不来？！</p>
+<p>后来找到原因出在加载这里，因为浏览器加载图片是异步加载，在图片没有加载到的情况下执行drawImage，画布中当然什么都没有。于是在原有代码的基础上加了onload就解决了。附上解决后代码：</p>
+<pre><code>var canvas = document.getElementById(&quot;canvas&quot;);
+var ctx = canvas.getContext('2d');
+var img = new Image();
+img.src = 'images/z.jpg';
+img.onload = function() {
+    ctx.drawImage(img,0,0)
+};
+</code></pre>
+
+<p>后来发现这并不是好的解决办法，图片放进canvas之后在使用橡皮功能（<code>resetEraser()</code>）可以擦去画布内的一切，包括我放进去的图片。</p>
+<p>最后决定结合background和canvas来解决。首先在获取到图片后将图片设为canvas的background，然后在canvas内随意涂鸦，当保存时先导出canvas内容，然后再将获取到的图片放进canvas中，再放入导出的canvas涂鸦，最后合成一张图片导出。附上代码：</p>
+<pre><code>var img = new Image();
+var l = $('#canvas').css('background-image').length;
+img.src = $('#canvas').css('background-image').substring(5,l-2);
+var imgs = new Image();
+imgs.src = this.canvas.toDataURL();
+img.onload = function() {
+    // 保证图片加载后才放到画布中
+    ctx.drawImage(img,0,0,512,512) 
+    ctx.drawImage(imgs,0,0,512,512)
+    // ==============保存图片===========
+    Output = canvas.toDataURL();
+};
+</code></pre>
+
+<h3 id="canvas_2">canvas大小问题</h3>
+<p>在之前的一个项目中，我通过获取后台图片的宽高用js给canvas重置宽高。但是后续发现在canvas内的涂鸦全被放大并且有不同程度的位置跑偏。</p>
+<p>原来canvas有一个默认宽高为300px * 150px ，如果在canvas标签内使用height，width给canvas重设高度，则canvas的宽高为你设定的宽高。</p>
+<pre><code>&lt;canvas height='500' width='600'&gt;&lt;/canvas&gt;
+</code></pre>
+
+<p>但是如果使用css的height，width给canvas重设宽高，那么canvas则在原来300*150的基础上缩放到你所设定的宽高（js给canvas设宽高也是通过css样式设置，所以效果一样，包括内联样式style的height，width也是同样效果）。</p>
+<p>并且canvas的宽高只能设置一个数组，默认为px，不能使用百分比，rem等，即使设了也不认单位只认数字。</p>
+<h3 id="canvas_3">canvas绘制虚线框</h3>
+<p>最近做的项目中有一个需求，需要在canvas中绘制一个框来标出重要的部分，有些是实线框，有些是虚线框。聊需求的时候我以为蛮简单的，但是在实际处理中我发现canvas根本没有线型的参数，一条虚直线都画不了，跟别提虚线框了T_T</p>
+<p>换个角度，既然可以画线条，那就可以画很多短线条连起来不就是虚线吗，四条虚线闭合不就是虚线框了。于是我找到了这样一个canvas下绘制虚线的算法：<a href="http://blog.sina.com.cn/s/blog_6d0dc2a90102vcd4.html">canvas 绘制虚线</a> ，实际使用我发现有点不太方便，遂加了小小的改进。</p>
+<pre><code>// 画虚线函数 8个值为canvas，起点坐标x1，y1，终点坐标x2,y2，虚线宽度, 线粗细, 颜色
+function drawDashedLine(ctx, x1, y1, x2, y2, dashLength ,lineWeight ,lineColor) {
+    dashLength = dashLength === undefined ? 5 : dashLength;
+    var deltaX = x2 - x1;
+    var deltaY = y2 - y1;
+    var numDashes = Math.floor(Math.sqrt(deltaX * deltaX + deltaY * deltaY) / dashLength);
+    for(var i = 0; i &lt; numDashes; ++i) {
+        ctx[i % 2 === 0 ? 'moveTo' : 'lineTo'](x1 + (deltaX / numDashes) * i, y1 + (deltaY / numDashes) * i);
+    }
+    ctx.lineWidth = lineWeight;
+    ctx.strokeStyle = lineColor;
+    ctx.stroke();
+};
+</code></pre>
+
+<p>这样就可以使用drawDashedLine()来绘制各种虚线了。为了实际使用的方便，我这里又封装了一个绘制虚线框的函数来简化整个绘制过程：</p>
+<pre><code>// 画虚线框函数 3个值为起点坐标，框的宽度,间隔,粗细
+            function drawDashedBorder(x ,y ,size){
+                var cxt = document.getElementById('img').getContext('2d');
+                var x1 = x;
+                var x2 = x + size;
+                var y1 = y;
+                var y2 = y + size;
+                cxt.beginPath();
+                drawDashedLine(cxt,x1,y1,x2,y1,2,1,'red');
+                drawDashedLine(cxt,x2,y1,x2,y2,2,1,'red');
+                drawDashedLine(cxt,x2,y2,x1,y2,2,1,'red');
+                drawDashedLine(cxt,x1,y2,x1,y1,2,1,'red');
+                cxt.closePath();
+            }
+</code></pre>
+
+<h3 id="canvas_4">canvas之半透明</h3>
+<p>在项目中，我们有时候需要吧canvas中的内容变成半透明的，如果只是绘制一个点，线，面，我们在指定颜色的时候就可以使用rgba来改变透明度，但是如果要把图片变透明呢？我这里找到了两种方法供大家参考：</p>
+<p>1，ctx.globalAlpha = 0.5; </p>
+<p>这样做可以让canvas中的所有元素直接变成半透明，但问题也在这里，如果我只是让某张半透明其他正常那就不行了；</p>
+<p>2，对图像进行像素级处理</p>
+<p>我们在把图片绘制到canvas里面之后，再使用ctx.getImageData(offsetX, offsetY, getImgWidth, getImgHeight);函数就可以把指定区域内的数据取出来，打印可以看到取出的是一组数字，这其实是每个像素点的颜色信息，每一个像素点都被转换成了rgba四个颜色值，我们可以遍历这组数据，把每四个数字的最后一个数字乘以0.X就可以实现透明度的变换，最后再ctx.putImageData(imgageData, startX, startY); 但是这样做效率太慢，有待优化。</p>
+<p>更多好的方法，期待你的方案：csw0416@hotamil.com</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2017 | Powered By Chen Shiwen | <a href="www.miitbeian.gov.cn">粤ICP备</a>17030492号-1</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
