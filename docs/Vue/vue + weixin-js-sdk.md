@@ -42,11 +42,89 @@ npm install weixin-js-sdk
 >
 > https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
 >
+> （直接在浏览器输入即可获取，提示{"errcode":40164,"errmsg":"invalid ip XXX.XXX.XX.XX, not in whitelist hint: [***********]"}则需要将你的IP加入到公众号开发配置的白名单中）
+>
 > 2，用上面获取到的access_token获取jsapi_ticket
 >
 > https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi
 >
-> 3，拿到ticket之后生成JS-SDK权限验证签名
+> 3，拿到ticket之后生成JS-SDK权限验证的签名了。
+>
+> 我们为什么要知道这些呢，在微信js-sdk的调用中，微信对于安全的把控是十分严格的，签名的错误会导致sdk无法调用。签名的生成和验校需要jsapi_ticket(也就是上面第二步拿到的ticket)、nonceStr、timestamp、url四个值共同计算，其中任何一个的不同都会导致签名不同，从而无法调用sdk。为了排除签名错误导致的问题，微信官方给出了 [微信 JS 接口签名校验工具](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign) ，我们可以直接在这个页面上进行签名的验校，排除异常。
 
- 
 
+
+####  开发
+
+首先先来看官方文档：
+
+> **步骤三：通过config接口注入权限验证配置**
+>
+> 所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。
+>
+> wx.config({
+>
+> ​    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+>
+> ​    appId: '', // 必填，公众号的唯一标识
+>
+> ​    timestamp: , // 必填，生成签名的时间戳
+>
+> ​    nonceStr: '', // 必填，生成签名的随机串
+>
+> ​    signature: '',// 必填，签名，见附录1
+>
+> ​    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+>
+> });
+
+划重点：<u>同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用</u> 
+
+那么什么是同一个url呢，经过我的测试我发现，微信在使用url生成签名的时候会读到?后面的参数一并进行计算，但是vue-router中hash模式#后的内容却不读。所以只要两个url中第一个#前面的内容一样，即可视为他们是同一个url，他们生成的签名是一样的。
+
+所以如果你是用hash模式，你只需要在App.vue中调用一次wx.config，将所有需要的api在jsApiList中声明，即可全局调用api而无需二次调用。
+
+但是如果你使用history模式，除了需要服务器的配置之外，每个vue组件内都需要从后端取一次签名，调用config之后才可以使用api。
+
+我的项目前端使用hash模式，后端使用了TP框架，config的参数在index.html中取到并存进了localStorage中：
+
+```
+localStorage.w_appId = '{$signPackage["appId"]}';
+localStorage.w_timestamp = '{$signPackage["timestamp"]}';
+localStorage.w_nonceStr = '{$signPackage["nonceStr"]}';
+localStorage.w_signature = '{$signPackage["signature"]}';
+```
+
+所以在App.vue中直接取出即可：
+
+```
+<script>
+  import wx from 'weixin-js-sdk'
+
+  export default {
+    name: 'app',
+    mounted () {
+      wx.config({
+        debug: true, // 开启调试模式，true会alert所有api返回值
+        appId: localStorage.w_appId, // 公众号唯一id
+        timestamp: localStorage.w_timestamp, // 生成签名的时间戳
+        nonceStr: localStorage.w_nonceStr, // 生成签名的随机串
+        signature: localStorage.w_signature, // 签名
+        jsApiList: [ // 需要使用的js列表
+          'onMenuShareTimeline',
+		  'onMenuShareAppMessage',
+		  'onMenuShareQQ',
+		  'onMenuShareWeibo',
+		  'onMenuShareQZone'
+        ]
+      })
+    }
+  }
+</script>
+```
+
+
+
+#### 图片相关
+
+> 这里我特别想吐槽腾讯的文档，我照着写的localIds，没错啊，但就是不行。后来debug才发现中间两个ll第一个是小写L第二个是大写I ！想杀人有没有！
