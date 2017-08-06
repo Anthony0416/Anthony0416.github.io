@@ -44,7 +44,7 @@
             {%- endif %}
           {%- endblock %}
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="display: none;">
 
               {%- block next_prev %}
                 {%- if page and (page.next_page or page.previous_page) %}
@@ -64,7 +64,7 @@
               {%- block repo %}
                 {%- if config.repo_url %}
                     <li>
-                        <a href="{{ config.repo_url }}">
+                        <a href="{{ config.repo_url }}" target="_blank">
                             {%- if config.repo_name == 'GitHub' %}
                                 <i class="fa fa-github"></i>
                             {%- elif config.repo_name == 'Bitbucket' -%}

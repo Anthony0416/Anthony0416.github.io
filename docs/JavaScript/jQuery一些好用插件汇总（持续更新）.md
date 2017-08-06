@@ -28,5 +28,11 @@
 
 
 
+### jCanvas
+
+website: [jCanvas](https://projects.calebevans.me/jcanvas/)  docs: [jCanvas-docs](https://projects.calebevans.me/jcanvas/docs/)
+
+这是一款基于jQuery和canvas的插件。使用该插件，我们就可以像使用jQuery一样方便的操纵canvas，而不需要复杂冗余的原生指令。该插件语法简练，简单几行就可创建canvas对象并且支持事件，可以方便的操纵canvas元素。
+
 
 

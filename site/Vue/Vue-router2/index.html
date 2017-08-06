@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>使用vue cli脚手架搭建项目框架 - Chen's Blog</title>
+        <title>Vue router2 - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -110,8 +110,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vue <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
-<li >
-    <a href="../Vue-router2/">Vue router2</a>
+<li class="active">
+    <a href="./">Vue router2</a>
 </li>
                             
 <li >
@@ -134,8 +134,8 @@
     <a href="../vux/">Vux</a>
 </li>
                             
-<li class="active">
-    <a href="./">使用vue cli脚手架搭建项目框架</a>
+<li >
+    <a href="../%E4%BD%BF%E7%94%A8vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6/">使用vue cli脚手架搭建项目框架</a>
 </li>
                         </ul>
                     </li>
@@ -181,12 +181,12 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../vux/">
+                        <a rel="next" href="../../React/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BAreact%E9%A1%B9%E7%9B%AE/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/MD%E6%96%87%E6%A1%A3%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+                        <a rel="prev" href="../vue%26webpack/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -203,35 +203,132 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#vue-cli">使用vue-cli脚手架搭建项目框架</a></li>
-            <li><a href="#vue-cli_1">使用vue-cli创建项目模板</a></li>
+        <li class="main active"><a href="#vue-router-2">Vue-router 2</a></li>
+            <li><a href="#_1">安装</a></li>
+            <li><a href="#_2">路由配置</a></li>
+            <li><a href="#router-view">router-view</a></li>
+            <li><a href="#router-link">router-link</a></li>
+            <li><a href="#_3">编程式导航</a></li>
+            <li><a href="#spa">附：SPA标题修改</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="vue-cli">使用vue-cli脚手架搭建项目框架</h2>
-<p>首先确保系统中安装node.js 4.x以上版本，npm 3.x以上版本</p>
-<p>安装vue-cli脚手架构建工具：<code>cnpm install -g vue-cli</code></p>
-<h3 id="vue-cli_1">使用vue-cli创建项目模板</h3>
-<p>1.打开控制台进入项目存放目录，这里以项目存储路径为D:\git\ 为例</p>
-<p>2.创建项目模板，其中webpack为模板类型，vue-model为项目名称</p>
-<p><code>vue init webpack vue-model</code> </p>
-<p>建议使用更全的webpack模板，如果你自是用于小项目或单个页面的开发，可以使用webpack-simple</p>
-<p>创建成功后，将在git文件夹下看到vue-model文件夹，这就是vue-cli帮我们搭建的项目模板</p>
-<p>3.安装所有依赖</p>
-<p><code>npm install</code> or <code>yarn</code></p>
+<h2 id="vue-router-2">Vue-router 2</h2>
+<h3 id="_1">安装</h3>
+<p>这一点在vue-router的官方文档中已经写得很明确，这里不再赘述。</p>
+<p>如果你自己构建项目，可以参考这里：<a href="https://router.vuejs.org/zh-cn/installation.html">vue-router2 安装</a> ;</p>
+<p>如果你是使用vue-cli初始化项目，项目中自带vue-router并已经做了简单的配置你可以在  src/router/index.js 中找到它并进行修改。</p>
+<h3 id="_2">路由配置</h3>
+<p>安装之后需要进行相关配置，这里以vue-cli来简要介绍。</p>
+<p>在router/index.js中配置路由信息，基础信息如下：</p>
+<pre><code>import Vue from 'vue'
+import Router from 'vue-router'
+import Hello from '@/components/Hello' 
+import other from '@/components/other'
+// @为全局变量，在build/webpack.base.conf.js中可以看到@为路径src
+// 这里需要import所有需要做路由的页面
+
+Vue.use(Router)
+// 声明vue使用router
+
+export default new Router({
+// 实例化router
+  mode: 'history',
+  // 声明路由模式，默认为hash模式，我这里修改为history模式
+  routes: [
+  // 配置路由路径
+    {
+      path: '/',
+      // 路径，域名后的路径信息eg：www.baidu.com/
+      name: 'Hello',
+      // 命名
+      component: Hello
+      // vue组件，对应上面import
+    },
+    {
+      path: '/other/:id',
+      // 带参路径，下面会有详细解释
+      name: 'other',
+      component: other
+    }
+  ]
+})
+</code></pre>
+
+<p>更多详细配置信息参考 <a href="https://router.vuejs.org/zh-cn/api/options.html">Router构造配置</a> 。
+然后在main.js中使用该配置：</p>
+<pre><code>import Vue from 'vue'
+import App from './App'
+import router from './router'
+
+new Vue({
+  el: '#app',
+  router,
+  template: '&lt;App/&gt;',
+  components: { App }
+  // 这里声明当前路径下的App.vue使用router/index.js配置信息
+})
+</code></pre>
+
+<h3 id="router-view">router-view</h3>
+<p>router-view是一个视图容器组件，该组件中承载当前路径的vue组件。上一小节中说到的App.vue中就有一个 <code>&lt;router-view&gt;&lt;/router-view&gt;</code> ，其中承载的内容根据浏览器中路径变化而变化。如当前路径为xxx.com/other，该容器中就是other.vue中的内容。</p>
+<p>router-view允许嵌套，这一点将在下面详细介绍。</p>
+<h3 id="router-link">router-link</h3>
+<p>vue-router使用 <code>&lt;router-link&gt;&lt;/router-link&gt;</code> 标签进行路径跳转，使用 <code>to</code> 属性指定目标地址：</p>
+<pre><code>eg：&lt;router-link to='/home'&gt;Home&lt;/router-link&gt;  // 跳转到/home页面
+</code></pre>
+
+<p>这个标签在经过转义后会被替换为 <code>a</code> 标签，默认配置下 <code>class='router-link-active'</code> 。我们可以直接修改 <code>a</code> 标签的默认样式或者 <code>.router-link-active</code> 的样式来定义 <code>router-link</code> 的样式。</p>
+<p>更多router-link的参数，参考这里<a href="https://router.vuejs.org/zh-cn/api/router-link.html"><router-link></a></p>
+<h3 id="_3">编程式导航</h3>
+<p>有些时候，我们希望页面在跳转前执行一些其他代码，比如save当前页面的数据。如果直接使用router-link标签，用户一点击立马就跳过去了，这显然不是我们想要的结果。这时候编程式导航就派上用场了。</p>
+<p>我们在需要跳转的标签上绑定点击事件，在函数中使用 <code>this.$router.push('/')</code> 来进行跳转。</p>
 <blockquote>
-<p>附npm和yarn换源：</p>
-<p>​ npm install --registry=https://registry.npm.taobao.org</p>
-<p>​ yarn config set registry https://registry.npm.taobao.org</p>
+<p>这里this为vue实例，如果你需要在闭包中使用this，请在外部将this赋值给其他参数： <code>const _this = this</code> </p>
 </blockquote>
-<p>4.执行项目</p>
-<p><code>npm run dev</code> or <code>yarn start</code></p>
-<p>在模板中，有两个已经配置好的命令可以执行，一个是dev用作项目开发，一个是build用作生产环境，配置代码在package.json文件中的script属性。
-执行成功后，浏览器自动打开http://localhost:8080/，并且支持热更新。</p>
-<p>5.项目打包</p>
-<p><code>npm run dist</code> or <code>yarn build</code></p>
-<p>打包后会在项目中生成dist文件夹，复制里面的文件到服务器即可发布。</p></div>
+<h3 id="spa">附：SPA标题修改</h3>
+<p>我们经常会使用vue做spa，虽然spa的用户体验较好，但是毕竟自是一个单页面，页面的标题是不会变的。浏览器还好，如果在微信中访问，上方大大的标题一直不变让人看起来很不舒服。</p>
+<p>当然解决办法也是有的，引用deboy大神的一篇blog：<a href="http://www.deboy.cn/set-wechat-title-in-vuejs-spa.html">教你在微信中给Vue单页应用设置标题</a> 。而且为了方便，deboy发布了一个npm包：<a href="https://www.npmjs.com/package/vue-wechat-title">vue-wechat-title</a></p>
+<p>原理的话，blog里面已经说得很清楚，我这里就简单说下怎么用吧。</p>
+<p>首先肯定是安装：</p>
+<pre><code>npm install vue-wechat-title --save
+</code></pre>
+
+<p>然后在main.js中引入：</p>
+<pre><code>Vue.use(require('vue-wechat-title'))
+</code></pre>
+
+<p>在App.vue的 <code>&lt;router-view&gt;</code> 标签中加入指令：</p>
+<pre><code>&lt;router-view v-wechat-title=&quot;$route.meta.title&quot;&gt;&lt;/router-view&gt;
+</code></pre>
+
+<p>最后，在路由配置中加入 <code>meta: { title = '***' }</code>:</p>
+<pre><code>export default new Router({
+  // mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      meta: {
+        title: '主页'
+      },
+      component: Home
+    },
+    {
+      path: '/advice_detail/:id',
+      name: '问题详情',
+      meta: {
+        title: '咨询进度'
+      },
+      component: adviceDetail
+    },
+</code></pre>
+
+<p>到这里就可以在浏览器中查看效果啦！</p>
+<blockquote>
+<p>Tip：微信web开发者工具中调试无效果，请在手机微信中查看！</p>
+</blockquote></div>
         </div>
 
         <footer class="col-md-12">

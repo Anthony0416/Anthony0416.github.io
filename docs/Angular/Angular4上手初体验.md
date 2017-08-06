@@ -28,7 +28,7 @@ os: win32 x64
 
 最后，键入 `ng sever --open` 等待奇迹的降临！没有看到的请回头再来一遍~~
 
-> 我这里安装依赖使用的yarn，亲测`yarn start`有效，`npm run dev`无效，有使用npm的可以交流交流~~
+> 亲测`yarn start`有效，`npm start`亦可~
 
 接下来就是愉快的开发啦，有不清楚的？去看官方文档啊！
 

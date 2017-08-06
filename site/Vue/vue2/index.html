@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>使用vue cli脚手架搭建项目框架 - Chen's Blog</title>
+        <title>Vue2 - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -122,8 +122,8 @@
     <a href="../vue%2Bweixin-js-sdk/">Vue+weixin js sdk</a>
 </li>
                             
-<li >
-    <a href="../vue2/">Vue2</a>
+<li class="active">
+    <a href="./">Vue2</a>
 </li>
                             
 <li >
@@ -134,8 +134,8 @@
     <a href="../vux/">Vux</a>
 </li>
                             
-<li class="active">
-    <a href="./">使用vue cli脚手架搭建项目框架</a>
+<li >
+    <a href="../%E4%BD%BF%E7%94%A8vue-cli%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6/">使用vue cli脚手架搭建项目框架</a>
 </li>
                         </ul>
                     </li>
@@ -181,12 +181,12 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../vux/">
+                        <a rel="next" href="../vue%2Bweixin-js-sdk/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/MD%E6%96%87%E6%A1%A3%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E7%A7%81%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+                        <a rel="prev" href="../vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -203,35 +203,40 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#vue-cli">使用vue-cli脚手架搭建项目框架</a></li>
-            <li><a href="#vue-cli_1">使用vue-cli创建项目模板</a></li>
+        <li class="main active"><a href="#vue-2">vue 2</a></li>
+            <li><a href="#script">script参数</a></li>
+            <li><a href="#_1">子组件</a></li>
+            <li><a href="#sass">使用sass</a></li>
+            <li><a href="#_2">数据绑定</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="vue-cli">使用vue-cli脚手架搭建项目框架</h2>
-<p>首先确保系统中安装node.js 4.x以上版本，npm 3.x以上版本</p>
-<p>安装vue-cli脚手架构建工具：<code>cnpm install -g vue-cli</code></p>
-<h3 id="vue-cli_1">使用vue-cli创建项目模板</h3>
-<p>1.打开控制台进入项目存放目录，这里以项目存储路径为D:\git\ 为例</p>
-<p>2.创建项目模板，其中webpack为模板类型，vue-model为项目名称</p>
-<p><code>vue init webpack vue-model</code> </p>
-<p>建议使用更全的webpack模板，如果你自是用于小项目或单个页面的开发，可以使用webpack-simple</p>
-<p>创建成功后，将在git文件夹下看到vue-model文件夹，这就是vue-cli帮我们搭建的项目模板</p>
-<p>3.安装所有依赖</p>
-<p><code>npm install</code> or <code>yarn</code></p>
+<h2 id="vue-2">vue 2</h2>
+<h4 id="script">script参数</h4>
+<h4 id="_1">子组件</h4>
+<p>由于子组件的特殊性，如果想在子组件上使用原生事件，比如click事件，常规的@click方法并不能生效，而必须写为@click.native</p>
+<h4 id="sass">使用sass</h4>
+<p>个人感觉sass/scss,less和css差不多，但是结构比较好看(<em>/ω＼</em>)</p>
+<p>废话不多说，既然想用，首先就要安装sass-loader，不然浏览器不承认哦：</p>
+<pre><code>npm install sass-loader --save-dev 或 yarn add sass-loader --dev
+</code></pre>
+
+<p>然后在webpack打包规则中添加如下代码：</p>
+<pre><code>{
+  test: /\.scss$/,
+  loaders: [&quot;style&quot;, &quot;css&quot;, &quot;sass&quot;]
+},
+</code></pre>
+
+<p>最后再每个vue组件的style标签上声明语言：</p>
+<pre><code>&lt;style scoped lang='scss'&gt;&lt;/style&gt;
+</code></pre>
+
+<h4 id="_2">数据绑定</h4>
 <blockquote>
-<p>附npm和yarn换源：</p>
-<p>​ npm install --registry=https://registry.npm.taobao.org</p>
-<p>​ yarn config set registry https://registry.npm.taobao.org</p>
-</blockquote>
-<p>4.执行项目</p>
-<p><code>npm run dev</code> or <code>yarn start</code></p>
-<p>在模板中，有两个已经配置好的命令可以执行，一个是dev用作项目开发，一个是build用作生产环境，配置代码在package.json文件中的script属性。
-执行成功后，浏览器自动打开http://localhost:8080/，并且支持热更新。</p>
-<p>5.项目打包</p>
-<p><code>npm run dist</code> or <code>yarn build</code></p>
-<p>打包后会在项目中生成dist文件夹，复制里面的文件到服务器即可发布。</p></div>
+<p>bug：有些情景下，我们在初始化一个页面的时候不需要一张图，而后续需要根据用户的操作去展示一张图片，所以我们就会这么去写： <code>&lt;img :src="imgurl"/&gt;</code> ，然后我们在data里初始化：<code>imgurl =''</code>  。然后实际渲染的时候当我们通过this.imgurl赋值之后发现图并没有出现，F12查看源码发现img标签的src属性没了？？？解决办法就是我们初始化的时候不要给元素赋值为空，哪怕让它 = ‘#’ 也好，至少让它有效的占住位。</p>
+</blockquote></div>
         </div>
 
         <footer class="col-md-12">
