@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>图片放大缩小+canvas涂鸦 - Chen's Blog</title>
+        <title>jCanvas - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -60,28 +60,27 @@
                         </ul>
                     </li>
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML+CSS <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">HtmlCssEs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li >
     <a href="../CSS%E6%80%BB%E7%BB%93/">CSS总结</a>
 </li>
                             
+<li >
+    <a href="../canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
+</li>
+                            
 <li class="active">
-    <a href="./">图片放大缩小+canvas涂鸦</a>
-</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">JavaScript <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            
-<li >
-    <a href="../../JavaScript/canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
+    <a href="./">jCanvas</a>
 </li>
                             
 <li >
-    <a href="../../JavaScript/jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">jQuery一些好用插件汇总（持续更新）</a>
+    <a href="../jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">jQuery一些好用插件汇总（持续更新）</a>
+</li>
+                            
+<li >
+    <a href="../%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%2Bcanvas%E6%B6%82%E9%B8%A6/">图片放大缩小+canvas涂鸦</a>
 </li>
                         </ul>
                     </li>
@@ -181,12 +180,12 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../CSS%E6%80%BB%E7%BB%93/">
+                        <a rel="next" href="../canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../JavaScript/canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">
+                        <a rel="prev" href="../jQuery%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E6%8F%92%E4%BB%B6%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -203,76 +202,20 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#canvas">图片放大缩小+canvas涂鸦</a></li>
-        <li class="main "><a href="#tip">TIP</a></li>
-            <li><a href="#_1">画布的清除：</a></li>
-            <li><a href="#_2">缩放重置：</a></li>
-            <li><a href="#_3">缩放模块：</a></li>
-            <li><a href="#_4">函数封装：</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h3 id="canvas">图片放大缩小+canvas涂鸦</h3>
-<p>因为之前的项目需要，然后时间又比较紧，需要快速实现功能。所以就结合了一个图片缩放插件（我记录在js插件博客内了），和 <a href="http://www.jb51.net/article/36186.htm">javascript结合html5 canvas实现(可调画笔颜色/粗细/橡皮)的涂鸦板</a> 这篇博文快速做了一个demo出来。</p>
-<p>简单来说就是把缩放插件所缩放的img换成了canvas，同时修改了缩放插件的函数，让初始化缩放的时候导出一个obj对象，对象包含鼠标拖动的事件，用于处理点击鼠标涂鸦和画图的冲突。</p>
-<p>而在涂鸦这里则针对canvas的放大处理坐标，将画布内的原始坐标除以canvas的放大倍数，从而保证canvas缩放后涂鸦能正常使用。</p>
-<p>而在图片和涂鸦的处理中则采用了分离的方法，在涂鸦的时候把图片作为画布的background，这样用户可以看到图片，但是不能擦掉图片内容，而在导出画布内容的时候再将图片放到canvas中，合并涂鸦导出图片。</p>
-<p>当然如果你需要修改的话，依然把原图作为canvas的background，这样就算用户擦掉了canvas中的图片，下面的background也会让整个画布看起来天衣无缝，前提是你要把画布内容和下面的background对准哦。</p>
-<p>代码大家可以clone到本地查看，打开index文件可直接查看效果。下面附几个套用该demo的一些tip。</p>
-<p>代码在我的github中，可以点击右上角github快速进入。</p>
-<h3 id="tip">TIP</h3>
-<p>下文#canvas为画布id，画布大小为512px*512px。</p>
-<h4 id="_1">画布的清除：</h4>
-<pre><code>var canvas = document.getElementById(&quot;canvas&quot;);
-var ctx = canvas.getContext('2d');
-ctx.clearRect(0,0,512,512);
-</code></pre>
-
-<h4 id="_2">缩放重置：</h4>
-<p>代码意思是将画布缩小500倍，但是实际上画布缩小到初始大小就不能被缩小了，这样就达到了重置缩放的目的。但是这里需要注意，不能在缩放模块隐藏后使用，不然会出问题。</p>
-<pre><code>$('#canvas').smartZoom('zoom', -500);
-</code></pre>
-
-<h4 id="_3">缩放模块：</h4>
-<p>缩放模块需要在项目开始的时候进行初始化，而如果这时候缩放模块需要隐藏，则使用 <code>visibility: hidden</code> ，否则会初始化失败。而如果缩放模块显示后需要隐藏，则需使用 <code>display: none</code> ，否则放大后的图片不能被隐藏掉。因为使用none来隐藏内容，所以这时候初始化缩放就会找不到图片而出问题。</p>
-<h4 id="_4">函数封装：</h4>
-<p>顺带附上我在实际项目中根据实际需要封装的合并函数。</p>
-<pre><code>            // 合并墨迹图片函数
-            // 正常不加i是保存同时清掉画布内容  加i则不清除画布内容
-            function merge(i){
-                var Output;
-                var canvas = document.getElementById(&quot;canvas&quot;);
-                var ctx = canvas.getContext('2d');
-                // 判断是否划线，checkCanvas=0没画，=1画过
-                if(checkCanvas == 1) {
-                    var img = new Image();
-                    var l = $('#canvas').css('background-image').length;
-                    img.src = $('#canvas').css('background-image').substring(5,l-2);
-                    var imgs = new Image();
-                    imgs.src = this.canvas.toDataURL();
-                    img.onload = function() {
-                        ctx.drawImage(img,0,0,512,512) // 保证图片加载后才放到画布中
-                        ctx.drawImage(imgs,0,0,512,512)
-                        // ==============保存图片===========
-                        // 带有墨迹的图片以base64形式输出，保存在Output
-                        Output = canvas.toDataURL();
-                        // 保存图片到对象===
-                        picObj[$(&quot;#curID&quot;).val()] = Output;
-                        // 重置缩放  发现有个bug  分开在需要的地方使用
-                        // $('#canvas').smartZoom('zoom', -500);
-                    };
-                    // 重置checkCanvas = 0
-                    checkCanvas = 0;
-                };
-                if(!i){
-                    // 不管是否保存,都需要清掉画布内容
-                    setTimeout(function(){
-                        ctx.clearRect(0,0,512,512);
-                    },0);
-                }
-            }
-</code></pre></div>
+<p>jCanvas</p>
+<p>jCanvas给canvas加入了层(layer)的概念，使得我们可以很容易的创建一个图层以及像操作jQueryDom一样操作该图层。</p>
+<blockquote>
+<p>可能canvas也有图层，原谅我浅薄无知，目前我在各大论坛知乎上看到关于canvas图层的解决方案都是利用多个canvas叠加来实现画布的效果。</p>
+</blockquote>
+<p>获取一个图层有两个方法，一是使用该层的索引，这个只适合简单和情况，复杂情况下我们最好预先给每个层定义一个唯一的id，方便后面获取和操作。</p>
+<blockquote>
+<p>tip：每一个layer的name都是唯一的，重复会导致后面的layer无法正常创建，且不会抛出任何异常。</p>
+</blockquote>
+<p>对layer进行操作之需要调用drawLayers()进行重绘才可看到效果。</p></div>
         </div>
 
         <footer class="col-md-12">
