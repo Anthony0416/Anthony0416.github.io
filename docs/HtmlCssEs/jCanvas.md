@@ -1,4 +1,4 @@
-jCanvas
+## jCanvas
 
 jCanvas给canvas加入了层(layer)的概念，使得我们可以很容易的创建一个图层以及像操作jQueryDom一样操作该图层。
 
