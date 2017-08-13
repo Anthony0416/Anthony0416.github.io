@@ -9,3 +9,5 @@ jCanvas给canvas加入了层(layer)的概念，使得我们可以很容易的创
 > tip：每一个layer的name都是唯一的，重复会导致后面的layer无法正常创建，且不会抛出任何异常。
 
 对layer进行操作之需要调用drawLayers()进行重绘才可看到效果。
+
+clearLayer().drawLayer() 可以直接清除所有层。
