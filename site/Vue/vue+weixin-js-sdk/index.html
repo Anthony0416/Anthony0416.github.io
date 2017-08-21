@@ -72,6 +72,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/ios%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">Ios的一些坑</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/jCanvas/">jCanvas</a>
 </li>
                             
@@ -110,11 +114,11 @@
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../Vue-router2/">Vue router2</a>
+    <a href="../Vue-router%202/">Vue router 2</a>
 </li>
                             
 <li >
-    <a href="../vue%26webpack/">Vue&webpack</a>
+    <a href="../vue%202/">Vue 2</a>
 </li>
                             
 <li class="active">
@@ -122,15 +126,11 @@
 </li>
                             
 <li >
-    <a href="../vue2/">Vue2</a>
-</li>
-                            
-<li >
     <a href="../vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">Vue与后端数据交互</a>
 </li>
                             
 <li >
-    <a href="../vux/">Vux</a>
+    <a href="../vux%202/">Vux 2</a>
 </li>
                             
 <li >
@@ -180,12 +180,12 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../vue%26webpack/">
+                        <a rel="next" href="../vue%202/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../vue2/">
+                        <a rel="prev" href="../vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -211,7 +211,7 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="vue-weixin-js-sdk">vue + weixin-js-sdk</h2>
-<p>vue+vux开发移动端页面是一件再平常不过的事情，但是既然是移动端就免不了涉及到微信开发。微信官方文档对js-sdk的使用是这样说的：</p>
+<p>vue开发移动端页面是一件再平常不过的事情，但是既然是移动端就免不了涉及到微信开发。微信官方文档对js-sdk的使用是这样说的：</p>
 <blockquote>
 <p>在需要调用JS接口的页面引入如下JS文件，（支持https）：http://res.wx.qq.com/open/js/jweixin-1.2.0.js</p>
 <p>备注：支持使用 AMD/CMD 标准模块加载方法加载</p>
@@ -239,7 +239,7 @@
 <p>2，用上面获取到的access_token获取jsapi_ticket</p>
 <p>https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&amp;type=jsapi</p>
 <p>3，拿到ticket之后生成JS-SDK权限验证的签名了。</p>
-<p>我们为什么要知道这些呢，在微信js-sdk的调用中，微信对于安全的把控是十分严格的，签名的错误会导致sdk无法调用。签名的生成和验校需要jsapi_ticket(也就是上面第二步拿到的ticket)、nonceStr、timestamp、url四个值共同计算，其中任何一个的不同都会导致签名不同，从而无法调用sdk。为了排除签名错误导致的问题，微信官方给出了 <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a> ，我们可以直接在这个页面上进行签名的验校，排除异常。</p>
+<p>我们为什么要知道这些呢，在微信js-sdk的调用中，微信对于安全的把控是十分严格的，签名的错误会导致sdk无法调用。签名的生成和验校需要jsapi_ticket(也就是上面第二步拿到的ticket)、nonceStr、timestamp、url四个值共同计算，其中任何一个的不同都会导致签名不同，从而无法调用sdk。为了排除签名错误导致的问题，微信官方给出了 <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a> ，我们可以直接在这个页面上进行签名的验校，排除异常（甩锅给后台）。</p>
 </blockquote>
 <h4 id="_2">开发</h4>
 <p>首先先来看官方文档：</p>
@@ -293,9 +293,70 @@ localStorage.w_signature = '{$signPackage[&quot;signature&quot;]}';
 </code></pre>
 
 <h4 id="_3">图片相关</h4>
+<p>项目中需要使用图片上传，干脆直接调微信sdk吧，照着开发文档在methods里写：</p>
+<pre><code>chooseImages () {
+  const _this = this
+  wx.chooseImage({
+    count: 1, // 选择图片张数
+    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    sourceType: ['album', 'camera'], // 图片来源
+    success: function (res) {
+      // 渲染图片
+      _this.imgUrl = res.localIds[0]
+      if (window.__wxjs_is_wkwebview) { // 兼容苹果
+        wx.getLocalImgData({
+          localId: _this.imgUrl, // 图片的localID
+          success: function (res) {
+            _this.chooseImg = res.localData 
+            // localData是图片的base64数据，可以用img标签显示，ios系统必须使用base64显示
+          }
+        })
+      } else {
+        _this.chooseImg = _this.imgUrl
+      }
+    }
+  })
+},
+</code></pre>
+
 <blockquote>
 <p>这里我特别想吐槽腾讯的文档，我照着写的localIds，没错啊，但就是不行。后来debug才发现中间两个ll第一个是小写L第二个是大写I ！想杀人有没有！</p>
-</blockquote></div>
+</blockquote>
+<p>然后是上传到微信服务器：</p>
+<pre><code>      submit () {
+        const _this = this
+        wx.uploadImage({
+          localId: _this.imgUrl,
+          isShowProgressTips: 100,
+          success: function (res) {
+            let serverId = res.serverId // 返回图片的服务器端ID
+            // 发送给后台
+            axios.post('url', {
+              images: serverId
+            }).then(
+              function (response) {
+                // 回到提交成功页面
+                _this.$router.push('/finish')
+              }
+            ).catch(function () {
+              _this.$vux.toast.show({
+                text: '上传失败，请稍后再试！',
+                time: '2000',
+                type: 'text',
+                width: '2rem',
+                position: 'middle'
+              })
+            })
+          }
+        })
+      }
+    }
+</code></pre>
+
+<blockquote>
+<p>这里需要注意，上传微信服务器的 <code>localId</code> 必须是 <code>wx.chooseImage()</code> 返回的res.localIds，不能是<code>wx.getLocalImgData()</code> 返回的base64。</p>
+</blockquote>
+<p>微信在调取 <code>wx.uploadImage()</code> 接口会默认有一个正在上传图片的loading，我们就不需要处理了。 </p></div>
         </div>
 
         <footer class="col-md-12">

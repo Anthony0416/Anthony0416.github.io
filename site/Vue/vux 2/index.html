@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Vux - Chen's Blog</title>
+        <title>Vux 2 - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -72,6 +72,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/ios%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">Ios的一些坑</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/jCanvas/">jCanvas</a>
 </li>
                             
@@ -110,11 +114,11 @@
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../Vue-router2/">Vue router2</a>
+    <a href="../Vue-router%202/">Vue router 2</a>
 </li>
                             
 <li >
-    <a href="../vue%26webpack/">Vue&webpack</a>
+    <a href="../vue%202/">Vue 2</a>
 </li>
                             
 <li >
@@ -122,15 +126,11 @@
 </li>
                             
 <li >
-    <a href="../vue2/">Vue2</a>
-</li>
-                            
-<li >
     <a href="../vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">Vue与后端数据交互</a>
 </li>
                             
 <li class="active">
-    <a href="./">Vux</a>
+    <a href="./">Vux 2</a>
 </li>
                             
 <li >
@@ -232,7 +232,7 @@ npm run dev 或 yarn start
 
 <p>检查你的package.json文件，是否存在vue-style-loader，css-loader，less，less-loader。这四个依赖为vux-loader打包必须包，请确保你的项目中有它们，如果没有，请添加并安装。</p>
 <blockquote>
-<p>这里有个坑，当你的项目中缺少less和less-loader的时候，它会反反复复提醒你缺少css-loader和vue-style-loader，即便它们已经存在。</p>
+<p>这里有个坑，因为vux使用了less，但是当你的项目中没有less和less-loader的时候，它会反反复复提醒你缺少css-loader和vue-style-loader，即便它们已经存在。当如果vux报错了，请检查less，less-loader，css-loader，vue-style-loader是否缺少。</p>
 </blockquote>
 <p>安装完成后打开项目中/build/webpack.base.conf.js
 最上方引入vux-loader模板</p>

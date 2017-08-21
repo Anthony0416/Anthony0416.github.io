@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Vue&webpack - Chen's Blog</title>
+        <title>Vue 2 - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -72,6 +72,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/ios%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">Ios的一些坑</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/jCanvas/">jCanvas</a>
 </li>
                             
@@ -110,11 +114,11 @@
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../Vue-router2/">Vue router2</a>
+    <a href="../Vue-router%202/">Vue router 2</a>
 </li>
                             
 <li class="active">
-    <a href="./">Vue&webpack</a>
+    <a href="./">Vue 2</a>
 </li>
                             
 <li >
@@ -122,15 +126,11 @@
 </li>
                             
 <li >
-    <a href="../vue2/">Vue2</a>
-</li>
-                            
-<li >
     <a href="../vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">Vue与后端数据交互</a>
 </li>
                             
 <li >
-    <a href="../vux/">Vux</a>
+    <a href="../vux%202/">Vux 2</a>
 </li>
                             
 <li >
@@ -180,7 +180,7 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../Vue-router2/">
+                        <a rel="next" href="../Vue-router%202/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -202,30 +202,178 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#vue-2">vue 2</a></li>
+            <li><a href="#vue">vue实例</a></li>
+            <li><a href="#_1">生命周期</a></li>
+            <li><a href="#_2">子组件</a></li>
+            <li><a href="#sass">使用sass</a></li>
+            <li><a href="#_3">数据绑定</a></li>
+            <li><a href="#_4">属性绑定</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p>vue &amp; webpack</p>
-<p>使用vue-cli构建项目的目录是酱紫：</p>
-<pre><code>├── build               // 项目 webpack 配置目录
-├── config               // 项目 config 目录
-├── dist               // 项目 npm run build 后产生的目录
-├── index.html         // 项目入口文件
-├── package.json       // 项目配置文件
-├── src                // 生产目录
-│   ├── assets         // css js 和图片资源
-│   ├── components     // 组件，创建组件时需注意组件的命名格式
-│   ├── views          //router 渲染的页面组件
-│   ├── App.vue        // 顶层组件（但在该项目，初期不熟悉，把该顶层组件删除了，组件直接写在 index.html里面了，影响还未发现）
-│   └── main.js        // Webpack 预编译入口
-│   └── vuex.js        // vuex 配置，状态管理
-│   └── router.js      // router 配置文件
-├── static             // 不需要 webpack 打包的静态资源，可以用来放置绝对路径的文件
+<h2 id="vue-2">vue 2</h2>
+<h4 id="vue">vue实例</h4>
+<p>官方文档：<a href="https://vuefe.cn/v2/api/"> vue-api </a> </p>
+<p>我这里列举一些常用的：</p>
+<p>name：组件名</p>
+<pre><code>name: 'home',
 </code></pre>
 
-<p>一般情况下我们会把图片放在assets文件夹中，官方确实也是这么做的。但是请注意这样只对html和css有效，因为这里面的路径会经过url-loader进行转换为打包后的路径。</p>
-<p>如果你需要在js中操作图片的地址，请务必将图片放在static文件夹中，路径写为 <code>'static/xx'</code> 即可。因为static中的文件无需打包，所以路径也不会有任何变化，所以这里直接写打包后的路径即可，不确定路径的话可以先打包一下看看哦~</p></div>
+<p>data：数据</p>
+<pre><code>data () {
+  return {
+    title: 'hello world！'
+  }
+}
+====================
+this.title   // =&gt; hello world!
+</code></pre>
+
+<p>props：子组件中声明父组件传递来的数据</p>
+<pre><code>props: ['text']
+====================
+this.text   // =&gt; name (父元素中&lt;compontent ：title = 'name'&gt;&lt;/compontent&gt;)
+</code></pre>
+
+<p>components：声明使用的组件</p>
+<pre><code>import { Toast, Loading } from 'vux'
+// 声明的组件都需要现在script标签内引用
+components: { Toast, Loading }
+</code></pre>
+
+<p>methods：方法，通常用于事件绑定</p>
+<pre><code>methods: {
+  submit () {
+    alert('提交成功！')
+  }
+}
+</code></pre>
+
+<p>computed：计算属性</p>
+<pre><code>data: { a: 1 },
+computed: {
+  // 仅读取，值只须为函数
+  aDouble: function () {
+    return this.a * 2
+  }
+}
+this.a       // =&gt; 1
+this.aDouble // =&gt; 2
+this.a       // =&gt; 2
+this.aDouble // =&gt; 4
+</code></pre>
+
+<p>watch：监听数据变化</p>
+<pre><code>data：{ a: 1 }，
+watch: (
+    a: function (val, oldVal) {
+      console.log(val, oldVal)
+    }
+)
+this.a = 2   // =&gt; 2, 1
+</code></pre>
+
+<p>mounted：生命周期方法，页面（组件）载入后执行</p>
+<pre><code>mounted () {
+  let clientHeight = window.innerHeight
+  this.minHeight = clientHeight
+},
+</code></pre>
+
+<h4 id="_1">生命周期</h4>
+<p>官方文档：<a href="https://vuefe.cn/v2/api/#选项-生命周期钩子">选项-生命周期钩子</a></p>
+<p><img alt="vue-life" src="https://vuefe.cn/images/lifecycle.png" /></p>
+<p>vue的生命周期分为如下阶段</p>
+<p><strong>beforeCreate</strong> 实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用</p>
+<p><strong>created</strong> 实例已经创建完成之后被调用</p>
+<p><strong>beforeMount</strong> 在挂载开始之前被调用，相关的 <code>render</code> 函数首次被调用</p>
+<p><strong>mounted</strong> <code>el</code> 被新创建的 <code>vm.$el</code> 替换，并挂载到实例上去之后调用该钩子</p>
+<p><strong>beforeUpdate</strong> 数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前</p>
+<p><strong>updated</strong> 由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子</p>
+<p><strong>activated</strong> keep-alive 组件激活时调用</p>
+<p><strong>deactivated</strong> keep-alive 组件停用时调用</p>
+<p><strong>beforeDestroy</strong> 实例销毁之前调用</p>
+<p><strong>destroyed</strong> Vue 实例销毁后调用</p>
+<p>我们用的最多的就是mounted，它的作用相当于js中的window.onload。</p>
+<h4 id="_2">子组件</h4>
+<p>由于子组件的特殊性，如果想在子组件上使用原生事件，比如click事件，常规的@click方法并不能生效，而必须写为@click.native</p>
+<h4 id="sass">使用sass</h4>
+<p>其实sass/scss,less和css差不多，但是结构比较清晰(<em>/ω＼</em>)</p>
+<p>废话不多说，既然要用，首先就要安装sass-loader，不然浏览器可看不懂哦：</p>
+<pre><code>npm install sass-loader --save-dev 或 yarn add sass-loader --dev
+</code></pre>
+
+<p>然后在webpack打包规则中添加如下代码：</p>
+<pre><code>{
+  test: /\.scss$/,
+  loaders: [&quot;style&quot;, &quot;css&quot;, &quot;sass&quot;]
+},
+</code></pre>
+
+<p>最后再每个vue组件的style标签上声明语言：</p>
+<pre><code>&lt;style scoped lang='scss'&gt;&lt;/style&gt;
+</code></pre>
+
+<h4 id="_3">数据绑定</h4>
+<p>vue的数据绑定只有一个模式：双花括号里面放上data的对象名：</p>
+<pre><code>&lt;p&gt;{{title}&lt;/p&gt;
+
+data: {
+  title: 'hello world!'
+}
+
+// =&gt; &lt;p&gt;hello world!&lt;/p&gt;
+</code></pre>
+
+<p>如果你要使用字符串和变量混合，很简单，写在花括号外面就可以了：</p>
+<pre><code>&lt;p&gt;title：{{title}&lt;/p&gt;    // =&gt;  &lt;p&gt;title： hello world!&lt;/p&gt;
+</code></pre>
+
+<h4 id="_4">属性绑定</h4>
+<h5 id="class">class</h5>
+<p>class的绑定分为以下情况：</p>
+<p>1：只有一个样式：使用单花括号：</p>
+<pre><code>&lt;div :class='{ red }'&gt;&lt;/div&gt;
+
+data: {
+  show: true,
+  red: redText
+}
+//  =&gt;  &lt;div class='redText'&gt;&lt;/div&gt;
+</code></pre>
+
+<p>2，多个样式：使用中括号：</p>
+<pre><code>&lt;div :class='[ show, red ]'&gt;&lt;/div&gt;
+
+data: {
+  show: pic,
+  red: redText
+}
+//  =&gt;  &lt;div class='pic redText'&gt;&lt;/div&gt;
+</code></pre>
+
+<pre><code>&lt;div :class='[{title: show}, show?block:none, red]'&gt;&lt;/div&gt;
+
+data: {
+  show: true,
+  red: red
+}
+//  =&gt;  &lt;div class='title block red'&gt;&lt;/div&gt;
+</code></pre>
+
+<h5 id="style">style</h5>
+<pre><code>
+</code></pre>
+
+<h5 id="_5">其他</h5>
+<pre><code>
+</code></pre>
+
+<blockquote>
+<p>bug：有些情景下，我们在初始化一个页面的时候不需要一张图，而后续需要根据用户的操作去展示一张图片，所以我们就会这么去写： <code>&lt;img :src="imgurl"/&gt;</code> ，然后我们在data里初始化：<code>imgurl =''</code>  。然后实际渲染的时候当我们通过this.imgurl赋值之后发现图并没有出现，F12查看源码发现img标签的src属性没了？？？解决办法就是我们初始化的时候不要给元素赋值为空，哪怕让它 = ‘#’ 也好，至少让它有效的占住位。</p>
+</blockquote></div>
         </div>
 
         <footer class="col-md-12">

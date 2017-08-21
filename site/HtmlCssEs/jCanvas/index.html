@@ -71,6 +71,10 @@
     <a href="../canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
 </li>
                             
+<li >
+    <a href="../ios%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">Ios的一些坑</a>
+</li>
+                            
 <li class="active">
     <a href="./">jCanvas</a>
 </li>
@@ -110,11 +114,11 @@
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="../../Vue/Vue-router2/">Vue router2</a>
+    <a href="../../Vue/Vue-router%202/">Vue router 2</a>
 </li>
                             
 <li >
-    <a href="../../Vue/vue%26webpack/">Vue&webpack</a>
+    <a href="../../Vue/vue%202/">Vue 2</a>
 </li>
                             
 <li >
@@ -122,15 +126,11 @@
 </li>
                             
 <li >
-    <a href="../../Vue/vue2/">Vue2</a>
-</li>
-                            
-<li >
     <a href="../../Vue/vue%E4%B8%8E%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">Vue与后端数据交互</a>
 </li>
                             
 <li >
-    <a href="../../Vue/vux/">Vux</a>
+    <a href="../../Vue/vux%202/">Vux 2</a>
 </li>
                             
 <li >
@@ -180,7 +180,7 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">
+                        <a rel="next" href="../ios%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -202,11 +202,12 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#jcanvas">jCanvas</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p>jCanvas</p>
+<h2 id="jcanvas">jCanvas</h2>
 <p>jCanvas给canvas加入了层(layer)的概念，使得我们可以很容易的创建一个图层以及像操作jQueryDom一样操作该图层。</p>
 <blockquote>
 <p>可能canvas也有图层，原谅我浅薄无知，目前我在各大论坛知乎上看到关于canvas图层的解决方案都是利用多个canvas叠加来实现画布的效果。</p>
@@ -215,7 +216,8 @@
 <blockquote>
 <p>tip：每一个layer的name都是唯一的，重复会导致后面的layer无法正常创建，且不会抛出任何异常。</p>
 </blockquote>
-<p>对layer进行操作之需要调用drawLayers()进行重绘才可看到效果。</p></div>
+<p>对layer进行操作之需要调用drawLayers()进行重绘才可看到效果。</p>
+<p>clearLayer().drawLayer() 可以直接清除所有层。</p></div>
         </div>
 
         <footer class="col-md-12">
