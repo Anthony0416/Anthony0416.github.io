@@ -161,7 +161,7 @@ npm install sass-loader --save-dev 或 yarn add sass-loader --dev
 vue的数据绑定只有一个模式：双花括号里面放上data的对象名：
 
 ```
-<p>{{title}</p>
+<p>{{title}}</p>
 
 data: {
   title: 'hello world!'
@@ -173,7 +173,7 @@ data: {
 如果你要使用字符串和变量混合，很简单，写在花括号外面就可以了：
 
 ```
-<p>title：{{title}</p>    // =>  <p>title： hello world!</p>
+<p>title：{{title}}</p>    // =>  <p>title： hello world!</p>
 ```
 
 
