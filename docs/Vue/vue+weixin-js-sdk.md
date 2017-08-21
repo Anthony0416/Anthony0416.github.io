@@ -1,6 +1,6 @@
 ## vue + weixin-js-sdk
 
-vue+vux开发移动端页面是一件再平常不过的事情，但是既然是移动端就免不了涉及到微信开发。微信官方文档对js-sdk的使用是这样说的：
+vue开发移动端页面是一件再平常不过的事情，但是既然是移动端就免不了涉及到微信开发。微信官方文档对js-sdk的使用是这样说的：
 
 > 在需要调用JS接口的页面引入如下JS文件，（支持https）：http://res.wx.qq.com/open/js/jweixin-1.2.0.js
 >
@@ -50,7 +50,7 @@ npm install weixin-js-sdk
 >
 > 3，拿到ticket之后生成JS-SDK权限验证的签名了。
 >
-> 我们为什么要知道这些呢，在微信js-sdk的调用中，微信对于安全的把控是十分严格的，签名的错误会导致sdk无法调用。签名的生成和验校需要jsapi_ticket(也就是上面第二步拿到的ticket)、nonceStr、timestamp、url四个值共同计算，其中任何一个的不同都会导致签名不同，从而无法调用sdk。为了排除签名错误导致的问题，微信官方给出了 [微信 JS 接口签名校验工具](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign) ，我们可以直接在这个页面上进行签名的验校，排除异常。
+> 我们为什么要知道这些呢，在微信js-sdk的调用中，微信对于安全的把控是十分严格的，签名的错误会导致sdk无法调用。签名的生成和验校需要jsapi_ticket(也就是上面第二步拿到的ticket)、nonceStr、timestamp、url四个值共同计算，其中任何一个的不同都会导致签名不同，从而无法调用sdk。为了排除签名错误导致的问题，微信官方给出了 [微信 JS 接口签名校验工具](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign) ，我们可以直接在这个页面上进行签名的验校，排除异常（甩锅给后台）。
 
 
 
@@ -127,4 +127,69 @@ localStorage.w_signature = '{$signPackage["signature"]}';
 
 #### 图片相关
 
+项目中需要使用图片上传，干脆直接调微信sdk吧，照着开发文档在methods里写：
+
+```
+chooseImages () {
+  const _this = this
+  wx.chooseImage({
+    count: 1, // 选择图片张数
+    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    sourceType: ['album', 'camera'], // 图片来源
+    success: function (res) {
+      // 渲染图片
+      _this.imgUrl = res.localIds[0]
+      if (window.__wxjs_is_wkwebview) { // 兼容苹果
+        wx.getLocalImgData({
+          localId: _this.imgUrl, // 图片的localID
+          success: function (res) {
+            _this.chooseImg = res.localData 
+            // localData是图片的base64数据，可以用img标签显示，ios系统必须使用base64显示
+          }
+        })
+      } else {
+        _this.chooseImg = _this.imgUrl
+      }
+    }
+  })
+},
+```
+
 > 这里我特别想吐槽腾讯的文档，我照着写的localIds，没错啊，但就是不行。后来debug才发现中间两个ll第一个是小写L第二个是大写I ！想杀人有没有！
+
+然后是上传到微信服务器：
+
+```
+      submit () {
+        const _this = this
+        wx.uploadImage({
+          localId: _this.imgUrl,
+          isShowProgressTips: 100,
+          success: function (res) {
+            let serverId = res.serverId // 返回图片的服务器端ID
+            // 发送给后台
+            axios.post('url', {
+              images: serverId
+            }).then(
+              function (response) {
+                // 回到提交成功页面
+                _this.$router.push('/finish')
+              }
+            ).catch(function () {
+              _this.$vux.toast.show({
+                text: '上传失败，请稍后再试！',
+                time: '2000',
+                type: 'text',
+                width: '2rem',
+                position: 'middle'
+              })
+            })
+          }
+        })
+      }
+    }
+```
+
+> 这里需要注意，上传微信服务器的 `localId` 必须是 `wx.chooseImage()` 返回的res.localIds，不能是`wx.getLocalImgData()` 返回的base64。
+
+微信在调取 `wx.uploadImage()` 接口会默认有一个正在上传图片的loading，我们就不需要处理了。 

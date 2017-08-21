@@ -32,7 +32,7 @@ npm install vux-loader --save-dev 或 yarn add vux-loader --dev
 
 检查你的package.json文件，是否存在vue-style-loader，css-loader，less，less-loader。这四个依赖为vux-loader打包必须包，请确保你的项目中有它们，如果没有，请添加并安装。
 
-> 这里有个坑，当你的项目中缺少less和less-loader的时候，它会反反复复提醒你缺少css-loader和vue-style-loader，即便它们已经存在。
+> 这里有个坑，因为vux使用了less，但是当你的项目中没有less和less-loader的时候，它会反反复复提醒你缺少css-loader和vue-style-loader，即便它们已经存在。当如果vux报错了，请检查less，less-loader，css-loader，vue-style-loader是否缺少。
 
 安装完成后打开项目中/build/webpack.base.conf.js
 最上方引入vux-loader模板
