@@ -16,11 +16,11 @@ React 起源于 Facebook 的内部项目，因为该公司对市场上所有 Jav
 
 #### 一些好的学习途径：
 
-> [阮一峰-React 技术栈系列教程](http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html)
+> [~~阮一峰-React 技术栈系列教程~~](http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html) 阮一峰的文档有点过时，且文章有疏漏之处，建议直接看官方文档
 >
 > [react中文社区](http://react-china.org/)
 >
-> [官方文档](http://reactjs.cn/react/docs/getting-started-zh-CN.html)
+> [官方文档](https://facebook.github.io/react/docs/hello-world.html)
 >
 
 
