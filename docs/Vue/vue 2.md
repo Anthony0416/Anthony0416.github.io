@@ -71,11 +71,11 @@ watch：监听数据变化
 
 ```
 data：{ a: 1 }，
-watch: (
+watch: {
 	a: function (val, oldVal) {
       console.log(val, oldVal)
 	}
-)
+}
 this.a = 2   // => 2, 1
 ```
 
