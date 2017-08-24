@@ -18,3 +18,23 @@ cursor: url("../images/pen.cur") auto;
 
 
 
+### 纯css实现图片居中剪裁
+
+```
+background-image: url(1.jpg);
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size: cover;
+```
+
+
+
+### css实现邮票边
+
+```
+background: radial-gradient(transparent 0, transparent 5px, #F39B00 5px);
+background-size: 15px 15px;
+background-position: 9px 3px;
+```
+
