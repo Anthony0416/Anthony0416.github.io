@@ -60,4 +60,6 @@ npm run dev
 
 讲道理，react的脚手架真的没几个好用的，各种残缺。有动手能力的还不如自己动手搭建。至于想快速创建项目，[React Demo](https://github.com/kenberkeley/react-demo) 或许是最好的选择，不过配置有点过于复杂，新手可以先用[react-seed](https://github.com/badsyntax/react-seed) ，clone下来改改就可以构建自己的spa项目了。
 
-#### 
+>  后面我在实际上拿react-seed构建项目的时候使用了动态路由‘pool/:id’，但是一直路径报错，原作者吧index.html中外链的路径写的是相对路径，当匹配动态域名的时候就会到’pool/dist‘去找，自然找不到。
+>
+> 这里字需要在’dist‘路径前加’/‘，即只从根目录查找路径就行了。
