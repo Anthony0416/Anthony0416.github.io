@@ -170,3 +170,29 @@ webpack中图片配置路径为dist/img/[name].[ext]，在实际打包中，因�
 后来尝试改变webpack开发配置，将publicPath路径修改为/，在loaders的图片配置将输出路径改为./dist/img/[name]的绝对路径，成功。同时为了保证其他打包资源的路径正确性，需要把其他所有的“js/”和“css/”前面都添加“dist/”。
 
 然后修改打包配置，将path由/app/dist改为/app，publicPath由/dist改为/，loaders图片输出配置由/img/[name]改为./dist/img/[name]，其他所有的“js/”和“css/”前面都添加“dist/”。
+
+
+
+#### 图片验证码问题
+
+项目中验证码图片需要调用后台接口返回，调用一次返回一张图，直接把接口用在img的src上就行，但是这样就无法实现点击图片换一张的效果了，所以在state里定义imgurl给img，初始值为接口url，然后给img绑定onclick事件，当点击的时候给imgurl赋值空，然后重新赋值为接口，于是我是酱紫写的：
+
+```
+this.setState({imgurl: '#'})
+_this.setState({imgurl: 'http://xxx'})
+```
+
+然后无论我怎么点都没反应==
+
+是不是赋值太快了导致没反应过来，以为值没变？那就加个定时吧。
+
+恩试了试果然可以了，但是在等待的时间里图片是一个挂掉的样子，然后测试setTimeout的时间，最后发现直接定0就行，既能成功换图又能不显示图片error的icon。完美
+
+```
+this.setState({imgurl: '#'})
+let _this = this;
+setTimeout(function(){
+	_this.setState({imgurl: 'http://xxx'})
+},0)
+```
+
