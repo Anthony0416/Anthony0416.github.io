@@ -40,3 +40,41 @@
 打包后会在项目中生成dist文件夹，复制里面的文件到服务器即可发布。
 
 
+
+### 在项目中使用sass
+
+sass的好处我就不多说，我们主要说如何在vue项目中使用scss以及配置全局sass变量。
+
+1，安装依赖
+
+```
+npm install node-sass --save-dev
+npm install sass-loader --save-dev
+```
+
+2，配置scss
+
+build文件夹中找到webpack.base.conf.js，在module=>rules里面添加下面代码
+
+```
+{
+	test: /\.scss$/,
+	loaders: ["style", "css", "sass"]
+},
+```
+
+3，使用scss
+
+.vue文件中
+
+```
+<style lang='scss'></style>
+```
+
+4，配置全局sass变量
+
+使用[sass-resources-loader](https://github.com/shakacode/sass-resources-loader)
+
+不过作者方法写的够好，详细配置参考这篇博客
+[Vue中SASS如何全局使用变量，mixin，或者function？](https://hopkinson.github.io/2017/06/30/Vue%E4%B8%ADSASS%E5%A6%82%E4%BD%95%E5%85%A8%E5%B1%80%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F%EF%BC%8Cmixin%EF%BC%8C%E6%88%96%E8%80%85function/)
+

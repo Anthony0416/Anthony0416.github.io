@@ -236,3 +236,15 @@ data: {
 
 > bug：有些情景下，我们在初始化一个页面的时候不需要一张图，而后续需要根据用户的操作去展示一张图片，所以我们就会这么去写： `<img :src="imgurl"/>` ，然后我们在data里初始化：`imgurl =''`  。然后实际渲染的时候当我们通过this.imgurl赋值之后发现图并没有出现，F12查看源码发现img标签的src属性没了？？？解决办法就是我们初始化的时候不要给元素赋值为空，哪怕让它 = ‘#’ 也好，至少让它有效的占住位。
 
+
+
+### 获取真实DOM
+
+从一开始学习vue，我就抱着vue不能操作dom的思想，但是后来随着项目的深入，发现有些地方我们必须会用到dom
+
+获取dom高度
+
+```
+this.canvasHeight = this.$refs.video.getBoundingClientRect().height
+```
+

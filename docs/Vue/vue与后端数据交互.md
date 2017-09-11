@@ -46,7 +46,7 @@ axios.get('xxxxx')
 ##### get
 
 ```
-import axios from axios
+import axios from 'axios'
 axios.get('url', {
     params: {
       ID: 12345
@@ -63,7 +63,7 @@ axios.get('url', {
 传json格式数据：
 
 ```
-import axios from axios
+import axios from 'axios'
 axios.post('url', {
     firstName: 'Fred',
     lastName: 'Flintstone'
@@ -79,7 +79,7 @@ axios.post('url', {
 先安装qs：`npm install qs --save`
 
 ```
-import axios from axios
+import axios from 'axios'
 import qs from 'qs'
 axios.post('url', qs.stringify({
     firstName: 'Fred',
