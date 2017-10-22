@@ -68,6 +68,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/H5%20video/">H5 video</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
 </li>
                             
@@ -204,6 +208,7 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#vue-cli">使用vue-cli脚手架搭建项目框架</a></li>
             <li><a href="#vue-cli_1">使用vue-cli创建项目模板</a></li>
+            <li><a href="#sass">在项目中使用sass</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -230,7 +235,31 @@
 执行成功后，浏览器自动打开http://localhost:8080/，并且支持热更新。</p>
 <p>5.项目打包</p>
 <p><code>npm run dist</code> or <code>yarn build</code></p>
-<p>打包后会在项目中生成dist文件夹，复制里面的文件到服务器即可发布。</p></div>
+<p>打包后会在项目中生成dist文件夹，复制里面的文件到服务器即可发布。</p>
+<h3 id="sass">在项目中使用sass</h3>
+<p>sass的好处我就不多说，我们主要说如何在vue项目中使用scss以及配置全局sass变量。</p>
+<p>1，安装依赖</p>
+<pre><code>npm install node-sass --save-dev
+npm install sass-loader --save-dev
+</code></pre>
+
+<p>2，配置scss</p>
+<p>build文件夹中找到webpack.base.conf.js，在module=&gt;rules里面添加下面代码</p>
+<pre><code>{
+    test: /\.scss$/,
+    loaders: [&quot;style&quot;, &quot;css&quot;, &quot;sass&quot;]
+},
+</code></pre>
+
+<p>3，使用scss</p>
+<p>.vue文件中</p>
+<pre><code>&lt;style lang='scss'&gt;&lt;/style&gt;
+</code></pre>
+
+<p>4，配置全局sass变量</p>
+<p>使用<a href="https://github.com/shakacode/sass-resources-loader">sass-resources-loader</a></p>
+<p>不过作者方法写的够好，详细配置参考这篇博客
+<a href="https://hopkinson.github.io/2017/06/30/Vue%E4%B8%ADSASS%E5%A6%82%E4%BD%95%E5%85%A8%E5%B1%80%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F%EF%BC%8Cmixin%EF%BC%8C%E6%88%96%E8%80%85function/">Vue中SASS如何全局使用变量，mixin，或者function？</a></p></div>
         </div>
 
         <footer class="col-md-12">

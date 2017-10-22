@@ -68,6 +68,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/H5%20video/">H5 video</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">Canvas日常笔记</a>
 </li>
                             
@@ -250,7 +254,10 @@
 <p>~~如果想在启动项目后自动打开浏览器，可以参照这个：<a href="http://blog.csdn.net/isaisai/article/details/54892888">webpack 启动后自动打开浏览器插件：open-browser-webpack-plugin</a>~~</p>
 <h3 id="_2">写在最后</h3>
 <p>讲道理，react的脚手架真的没几个好用的，各种残缺。有动手能力的还不如自己动手搭建。至于想快速创建项目，<a href="https://github.com/kenberkeley/react-demo">React Demo</a> 或许是最好的选择，不过配置有点过于复杂，新手可以先用<a href="https://github.com/badsyntax/react-seed">react-seed</a> ，clone下来改改就可以构建自己的spa项目了。</p>
-<h4 id="_3"></h4></div>
+<blockquote>
+<p>后面我在实际上拿react-seed构建项目的时候使用了动态路由‘pool/:id’，但是一直路径报错，原作者吧index.html中外链的路径写的是相对路径，当匹配动态域名的时候就会到’pool/dist‘去找，自然找不到。</p>
+<p>这里字需要在’dist‘路径前加’/‘，即只从根目录查找路径就行了。</p>
+</blockquote></div>
         </div>
 
         <footer class="col-md-12">

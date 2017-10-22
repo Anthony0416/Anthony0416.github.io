@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>CSS总结 - Chen's Blog</title>
+        <title>H5 video - Chen's Blog</title>
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -63,12 +63,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">HtmlCssEs <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
-<li class="active">
-    <a href="./">CSS总结</a>
+<li >
+    <a href="../CSS%E6%80%BB%E7%BB%93/">CSS总结</a>
 </li>
                             
-<li >
-    <a href="../H5%20video/">H5 video</a>
+<li class="active">
+    <a href="./">H5 video</a>
 </li>
                             
 <li >
@@ -184,12 +184,12 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none;">
                     <li >
-                        <a rel="next" href="../../Angular/Angular4%E4%B8%8A%E6%89%8B%E5%88%9D%E4%BD%93%E9%AA%8C/">
+                        <a rel="next" href="../CSS%E6%80%BB%E7%BB%93/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../H5%20video/">
+                        <a rel="prev" href="../canvas%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -206,38 +206,22 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#css">CSS总结</a></li>
-            <li><a href="#cursor">cursor</a></li>
-            <li><a href="#css_1">纯css实现图片居中剪裁</a></li>
-            <li><a href="#css_2">css实现邮票边</a></li>
+        <li class="main active"><a href="#h5-video">H5 video</a></li>
+            <li><a href="#1">1，视频格式：</a></li>
+            <li><a href="#2">2，视频来源：</a></li>
+            <li><a href="#3">3，播放控件：</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="css">CSS总结</h2>
-<h3 id="cursor">cursor</h3>
-<p>一般使用鼠标样式都是默认的那么几个，这次项目中需要使用自定义样式。我蛮以为很简单的，把样式切成图url引进去就可以了，但是我这么写了之后发现不生效？？？</p>
-<pre><code>cursor: url(&quot;../images/pen.png&quot;);
-</code></pre>
-
-<p>又跑去查看文档，没错啊，自定义就是url引进去就可以了啊。然后百度，有人说部分浏览器不支持png的鼠标样式，然后我就给转成了cur格式。可是鼠标依然是箭头？？？</p>
-<p>后来发现有人会在url后面加一些参数，我又跑去看w3c的cursor文档，还是没找到相关的用法，然后死马当活马医就在url后面加个auto，诶，居然成功了~</p>
-<pre><code>cursor: url(&quot;../images/pen.cur&quot;) auto;
-</code></pre>
-
-<h3 id="css_1">纯css实现图片居中剪裁</h3>
-<pre><code>background-image: url(1.jpg);
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center;
-background-size: cover;
-</code></pre>
-
-<h3 id="css_2">css实现邮票边</h3>
-<pre><code>background: radial-gradient(transparent 0, transparent 5px, #F39B00 5px);
-background-size: 15px 15px;
-background-position: 9px 3px;
-</code></pre></div>
+<h2 id="h5-video">H5 video</h2>
+<p>H5的video标签支持在页面中嵌入视频播放器，且自带播放控制控件，在实际应用中发现如下坑：</p>
+<h4 id="1">1，视频格式：</h4>
+<p>video支持三种格式，MP4，WebM及Ogg，不同浏览器对不同视频的格式支持度是不一样的，这三种格式中，我们最常见的就是MP4了，然后比较坑的是MP4有四种视频编码，而浏览器仅支持AVC(H.264)，其他的编码虽然也是.mp4但实际是无法播放的。</p>
+<h4 id="2">2，视频来源：</h4>
+<p>开发过程中我先直接在项目根目录放了一个视频，直接src='test.mp4'，居然可以播放，没有之前网上看到的一些乱七八糟的问题，但是无法通过拖动进度条或者调用方法改变播放进度，使用videojs也不行，后来把视频传到服务器引用线上资源就可以了。</p>
+<h4 id="3">3，播放控件：</h4>
+<p>video的所有控件都是在video内部，直接往上面覆盖其他元素会导致无法点击触发。</p></div>
         </div>
 
         <footer class="col-md-12">
