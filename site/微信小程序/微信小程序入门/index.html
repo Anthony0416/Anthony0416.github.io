@@ -217,6 +217,8 @@
             <li><a href="#_8">开始正式编写小程序</a></li>
             <li><a href="#part-1">Part 1</a></li>
             <li><a href="#part-2">Part 2</a></li>
+            <li><a href="#part-3">Part 3 参数</a></li>
+            <li><a href="#attention">Attention</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -554,7 +556,47 @@
 <blockquote>
 <p>这里我在实际测试中发现路径这里有个坑，所谓的/开头的完整路径就是app.json中注册路径前面加/，如果不清楚当前页面路径，可以在小程序预览窗口下方找到路径，在这个路径前加/即为分享路径。</p>
 <p><img alt="share" src="../MdImgs/share.png" /></p>
-</blockquote></div>
+</blockquote>
+<h3 id="part-3">Part 3 参数</h3>
+<h4 id="_14">事件传参</h4>
+<p>在页面中，存在一种这样的情况，我们有很多个按钮，每个按钮都有着相同的事件，但参数不同。在vue中我们可以使用 <code>@click="funtion(val)"</code> 的方法给所有按钮绑定同一个事件funtion，同时带上他们的参数。但是小程序中如果你这么写 <code>bindtap="funtion(val)"</code> 他会告诉你找不到funtion(val)这个事件，看来他直接把参数也作为事件名了。</p>
+<p>所以在小程序中bindtap后面只能跟事件名，不能乱写其他的，但是如果我们要传参数，那怎么办呢。</p>
+<pre><code>funtion：funtion（e）{}
+</code></pre>
+
+<p>这是小程序的自定事件写法，我们先来打印这个e看看他是什么：</p>
+<pre><code>{type: &quot;tap&quot;, timeStamp: 3812, target: {…}, currentTarget: {…}, detail: {…}, …}
+    changedTouches:[{…}]
+    currentTarget:{id: &quot;&quot;, offsetLeft: 46, offsetTop: 879, dataset: {…}}
+    detail:{x: 224, y: 1128}
+    target:{id: &quot;&quot;, offsetLeft: 46, offsetTop: 879, dataset: {…}}
+    timeStamp:3812
+    touches:[{…}]
+    type:&quot;tap&quot;
+    __proto__:Object
+</code></pre>
+
+<p>熟悉小程序的应该知道currentTarget是绑定事件的组件，target是触发事件的组件。他们都有共同的四个字段：id，offsetLeft，offsetTop，dataset。中间两个明显是位置信息，第一个是组件的id，其实我们可以利用这个id传单个且简单的参数。但是如果要传多个参数就需要使用到最后一个字段dataset了。</p>
+<p>看下面一个例子：</p>
+<pre><code>&lt;image src=&quot;{{src}}&quot; data-src=&quot;{{src}}&quot; mode=&quot;widthFix&quot; bindtap='preview'&gt;&lt;/image&gt;
+</code></pre>
+
+<p>我们需要给页面每个image组件绑定一个previewImage事件，看API可以知道previewImage事件一定要有一个urls参数，我们的逻辑只需要用户点击某张图全屏查看，所以只需要每次用户触发事件的时候把当前图片的src放到urls参数中。上面代码使用data-src把图片的地址存在了e.target.dataset.src中。所以我封装了一个这样的事件：</p>
+<pre><code>  preview: function (e) {
+    let imgArr = []
+    imgArr.push(e.target.dataset.src)
+    wx.previewImage({
+      urls: imgArr,
+    })
+  }
+</code></pre>
+
+<p>因为我把事件绑定在image组件上，所以对于这个时间来说e.target和e.currentTarget是一样的，每次触发创建一个数组，然后把拿到的src push进去，赋值给urls，完美解决。</p>
+<h4 id="_15">跨页面传参</h4>
+<p>这个就比较简单了，小程序直接用 [路径+？+参数名=参数] 的方式来传参，在接收页面的onLoad：funtion（option）{console.log（option.参数名）}即可。</p>
+<h3 id="attention">Attention</h3>
+<h4 id="about-es6">About ES6</h4>
+<p>小程序默认支持ES6语法，所以函数你可以这样写 <code>success: msg =&gt; {}</code> ,但是千万注意，如果函数内你需要操作this，比如this.setData，那就还是老老实实写 <code>success: funtion (msg) {}</code> ,不然你的函数中是没有this的。</p></div>
         </div>
 
         <footer class="col-md-12">
