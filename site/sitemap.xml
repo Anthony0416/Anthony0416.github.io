@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,7 +13,7 @@
         
     <url>
      <loc>/Angular/Angular4上手初体验/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -23,43 +23,49 @@
         
     <url>
      <loc>/HtmlCssEs/CSS总结/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/H5 video/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/canvas日常笔记/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/ios的一些坑/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/jCanvas/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/jQuery一些好用插件汇总（持续更新）/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/HtmlCssEs/一些神坑/</loc>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/HtmlCssEs/图片放大缩小+canvas涂鸦/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -69,25 +75,25 @@
         
     <url>
      <loc>/React/react入门教程一/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/React/react入门教程二/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/React/react项目实战一/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/React/脚手架快速构建react项目/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -97,37 +103,37 @@
         
     <url>
      <loc>/Vue/Vue-router 2/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Vue/vue 2/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Vue/vue+weixin-js-sdk/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Vue/vue与后端数据交互/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Vue/vux 2/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Vue/使用vue-cli脚手架搭建项目框架/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -137,19 +143,19 @@
         
     <url>
      <loc>/建站相关/MD文档快速构建私人博客/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/建站相关/Nginx安装与配置/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/建站相关/Node.JS安装配置/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -159,25 +165,25 @@
         
     <url>
      <loc>/微信小程序/微信小程序个人账号申请/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/微信小程序/微信小程序入门/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/微信小程序/指南针/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/微信小程序/简历分享demo/</loc>
-     <lastmod>2017-12-13</lastmod>
+     <lastmod>2018-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

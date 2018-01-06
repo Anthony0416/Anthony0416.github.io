@@ -94,9 +94,83 @@ eg：<router-link to='/home'>Home</router-link>  // 跳转到/home页面
 
 > 这里this为vue实例，如果你需要在闭包中使用this，请在外部将this赋值给其他参数： `const _this = this` 
 
+### 路由传参
 
+跨页面必然会需要传递些许参数，这里对vue-router的几种参数传递做个汇总：
 
+1，第一种方法就是vue-router官方文档所介绍的动态路由匹配。
 
+```
+// router.js
+{
+  path: '/user_ifo/:id',
+  name: 'userIfo',
+  component: userIfo
+},
+```
+
+这样的使用`/user_ifo/253`来跳转，传参可以直接 `this.$route.push({path: 'user_ifo', params: {id: 253}})` 甚至直接 `this.$route.push('user_ifo/253')` ，但是需要注意，如果没有另外配置/user_ifo的路由，那么不带参是会404的。
+
+同理，多个参数就一直往后面加就行了：
+
+```
+// router.js
+{
+  path: '/user_ifo/:id/:data',
+  name: 'userIfo',
+  component: userIfo
+},
+```
+
+路径：‘/user_ifo/253/something’
+
+实际访问：‘/user_ifo’
+
+参数: {id: 253, data: something}
+
+甚至还能嵌套：
+
+```
+// router.js
+{
+  path: '/user_ifo/:id/:data',
+  name: 'userIfo',
+  component: userIfo,
+  children: [
+    {
+      path: 'record/:time',
+      component: record
+    }
+  ]
+},
+```
+
+路径：‘/user_ifo/253/something/record/2017’
+
+实际访问：‘/user_ifo/record’
+
+参数: {id: 253, data: something, time: 2017}
+
+html中直接 `{{$route.params.id}}` 即可，js中使用 `this.$route.params.id` 获取。
+
+> 有一种说法是路由中可以不配置参数，这样直接使用 `<router-link :to='{name: 'user_ifo', params: {id: 253}}'>` 可以直接跳转，且路径中仅有/user_ifo，参数也能正常传递，但是如果刷新页面参数就没了。
+>
+> 
+
+2，第二种方法是使用传统的 `?` 传参，这种方法无需对路由做任何配置，兼容性较强：
+
+```
+// router.js
+{
+  path: '/user_ifo',
+  name: 'userIfo',
+  component: userIfo
+},
+```
+
+传： `this.$route.push({path: 'user_ifo', query: {id: 253}})`
+
+取：`this.$route.query.id` 
 
 ### 附：SPA标题修改
 
@@ -137,15 +211,8 @@ export default new Router({
         title: '主页'
       },
       component: Home
-    },
-    {
-      path: '/advice_detail/:id',
-      name: '问题详情',
-      meta: {
-        title: '咨询进度'
-      },
-      component: adviceDetail
-    },
+    }
+  ]
 ```
 
 到这里就可以在浏览器中查看效果啦！

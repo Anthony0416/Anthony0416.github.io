@@ -88,6 +88,10 @@
 </li>
                             
 <li >
+    <a href="../../HtmlCssEs/%E4%B8%80%E4%BA%9B%E7%A5%9E%E5%9D%91/">一些神坑</a>
+</li>
+                            
+<li >
     <a href="../../HtmlCssEs/%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%2Bcanvas%E6%B6%82%E9%B8%A6/">图片放大缩小+canvas涂鸦</a>
 </li>
                         </ul>
@@ -212,6 +216,7 @@
             <li><a href="#router-view">router-view</a></li>
             <li><a href="#router-link">router-link</a></li>
             <li><a href="#_3">编程式导航</a></li>
+            <li><a href="#_4">路由传参</a></li>
             <li><a href="#spa">附：SPA标题修改</a></li>
     </ul>
 </div></div>
@@ -290,6 +295,63 @@ new Vue({
 <blockquote>
 <p>这里this为vue实例，如果你需要在闭包中使用this，请在外部将this赋值给其他参数： <code>const _this = this</code> </p>
 </blockquote>
+<h3 id="_4">路由传参</h3>
+<p>跨页面必然会需要传递些许参数，这里对vue-router的几种参数传递做个汇总：</p>
+<p>1，第一种方法就是vue-router官方文档所介绍的动态路由匹配。</p>
+<pre><code>// router.js
+{
+  path: '/user_ifo/:id',
+  name: 'userIfo',
+  component: userIfo
+},
+</code></pre>
+
+<p>这样的使用<code>/user_ifo/253</code>来跳转，传参可以直接 <code>this.$route.push({path: 'user_ifo', params: {id: 253}})</code> 甚至直接 <code>this.$route.push('user_ifo/253')</code> ，但是需要注意，如果没有另外配置/user_ifo的路由，那么不带参是会404的。</p>
+<p>同理，多个参数就一直往后面加就行了：</p>
+<pre><code>// router.js
+{
+  path: '/user_ifo/:id/:data',
+  name: 'userIfo',
+  component: userIfo
+},
+</code></pre>
+
+<p>路径：‘/user_ifo/253/something’</p>
+<p>实际访问：‘/user_ifo’</p>
+<p>参数: {id: 253, data: something}</p>
+<p>甚至还能嵌套：</p>
+<pre><code>// router.js
+{
+  path: '/user_ifo/:id/:data',
+  name: 'userIfo',
+  component: userIfo,
+  children: [
+    {
+      path: 'record/:time',
+      component: record
+    }
+  ]
+},
+</code></pre>
+
+<p>路径：‘/user_ifo/253/something/record/2017’</p>
+<p>实际访问：‘/user_ifo/record’</p>
+<p>参数: {id: 253, data: something, time: 2017}</p>
+<p>html中直接 <code>{{$route.params.id}}</code> 即可，js中使用 <code>this.$route.params.id</code> 获取。</p>
+<blockquote>
+<p>有一种说法是路由中可以不配置参数，这样直接使用 <code>&lt;router-link :to='{name: 'user_ifo', params: {id: 253}}'&gt;</code> 可以直接跳转，且路径中仅有/user_ifo，参数也能正常传递，但是如果刷新页面参数就没了。</p>
+</blockquote>
+<p>2，第二种方法是使用传统的 <code>?</code> 传参，这种方法无需对路由做任何配置，兼容性较强：</p>
+<pre><code>// router.js
+{
+  path: '/user_ifo',
+  name: 'userIfo',
+  component: userIfo
+},
+</code></pre>
+
+<p>传： <code>this.$route.push({path: 'user_ifo', query: {id: 253}})</code></p>
+<p>取：<code>this.$route.query.id</code> </p>
 <h3 id="spa">附：SPA标题修改</h3>
 <p>我们经常会使用vue做spa，虽然spa的用户体验较好，但是毕竟自是一个单页面，页面的标题是不会变的。浏览器还好，如果在微信中访问，上方大大的标题一直不变让人看起来很不舒服。</p>
 <p>当然解决办法也是有的，引用deboy大神的一篇blog：<a href="http://www.deboy.cn/set-wechat-title-in-vuejs-spa.html">教你在微信中给Vue单页应用设置标题</a> 。而且为了方便，deboy发布了一个npm包：<a href="https://www.npmjs.com/package/vue-wechat-title">vue-wechat-title</a></p>
@@ -317,15 +379,8 @@ new Vue({
         title: '主页'
       },
       component: Home
-    },
-    {
-      path: '/advice_detail/:id',
-      name: '问题详情',
-      meta: {
-        title: '咨询进度'
-      },
-      component: adviceDetail
-    },
+    }
+  ]
 </code></pre>
 
 <p>到这里就可以在浏览器中查看效果啦！</p>
